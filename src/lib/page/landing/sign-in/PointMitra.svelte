@@ -2,7 +2,7 @@
   // Tambahkan logika Svelte/TS di sini jika diperlukan
 </script>
 
-<section id="point-mitra" class="relative px-8 h-[28rem] bg-gradient-to-b from-slate-950 to-zinc-900 text-white flex items-center overflow-hidden border-b border-zinc-800">
+<section id="point-mitra" class="relative px-8 h-[28rem] bg-gradient-to-b from-slate-950 to-zinc-900 text-white flex items-center overflow-hidden">
   <div class="mx-auto w-full grid grid-cols-[50%_19%_31%] gap-8 items-center">
     
     <!-- Sisi Kiri: Heading Utama -->
@@ -16,7 +16,7 @@
     </div>
 
     <!-- Kolom Tengah: Angka Raksasa -->
-    <div class="flex justify-start md:justify-start text-start border border-white">
+    <div class="flex justify-start md:justify-start text-start">
       <h1 class="leading-text font-sans font-black tracking-tighter text-[624px]" style="transform: rotate(10deg);" >1</h1>
     </div>
 
