@@ -1,3 +1,14 @@
+/* 1. Import Inter Display (untuk Heading) & Inter biasa (untuk Body/Teks panjang) */
+@import url('https://fonts.googleapis.com/css2?family=Inter+Display:wght@300;400;500&family=Inter:wght@400;500;600&display=swap');
+
 @import 'tailwindcss';
 @plugin '@tailwindcss/forms';
 @plugin '@tailwindcss/typography';
+
+@theme {
+  /* 2. Set sebagai font signature kamu */
+  --font-signature: "Inter Display", sans-serif;
+  
+  /* 3. Override font default bawaan tailwind untuk teks biasa supaya senada */
+  --font-sans: "Inter", sans-serif; 
+}
