@@ -1,6 +1,6 @@
 <script lang="ts">
-  import OuterHeader from '$lib/page/general/OuterHeader.svelte';
-  import OuterSide from '$lib/page/general/OuterSide.svelte';
+  import NavHeader from '$lib/page/main/general/NavHeader.svelte';
+  import NavSide from '$lib/page/main/general/NavSide.svelte';
 	import '../layout.css';
   import { onMount } from 'svelte';
   import { fade } from 'svelte/transition';
@@ -14,18 +14,9 @@
 </script>
 
 {#if mounted}
-<div class="grid grid-rows-[14%_86%]" in:fade={{duration: 800}}>
-	<div>
-		<OuterHeader/>
-	</div>
-	<div class="flex">
-		<div class="flex-1">
-			<OuterSide/>
-		</div>
-		<div class="flex-1">{@render children()}</div>
-	</div>
-	
+<div class="h-screen">
+<NavHeader/>
+<NavSide>{@render children?.()}</NavSide>
 </div>
 {/if}
-
 

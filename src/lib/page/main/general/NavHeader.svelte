@@ -2,5 +2,6 @@
 
 </script>
 
-<header class="w-full h-[14rem] bg-slate-600">
+<header class="w-full h-[3rem] bg-slate-600">
+oi
 </header>

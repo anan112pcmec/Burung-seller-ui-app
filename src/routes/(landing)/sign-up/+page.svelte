@@ -1,6 +1,6 @@
 <script lang="ts">
-  import Footer from "$lib/page/landing/sign-up/Footer.svelte";
-  import Header from "$lib/page/landing/sign-up/Header.svelte";
+  import Dokumentasi from "$lib/page/landing/sign-up/Dokumentasi.svelte";
+  import KekuatanBurung from "$lib/page/landing/sign-up/KekuatanBurung.svelte";
   import MerekaYangSudahBergabung from "$lib/page/landing/sign-up/MerekaYangSudahBergabung.svelte";
   import PointMitra from "$lib/page/landing/sign-up/PointMitra.svelte";
   import SignUp from "$lib/page/landing/sign-up/SignUp.svelte";
@@ -10,10 +10,10 @@
 
 </script>
 
-<Header/>
 <PointMitra/>
 <MerekaYangSudahBergabung/>
+<KekuatanBurung/>
+<Dokumentasi/>
 <SignUp/>
 <TahapanSetelahIntegrasi/>
 <Testimoni/>
-<Footer/>
