@@ -1,7 +1,7 @@
 <script lang="ts">
+  import DashboardSeller from "$lib/page/main/home/DashboardSeller.svelte";
+
 
 </script>
 
-<div class="p-2">
-
-</div>
+<DashboardSeller/>

@@ -1,7 +1,7 @@
 <script lang="ts">
   import { goto } from "$app/navigation";
 
-  let isMobileMenuOpen = false;
+  let isMobileMenuOpen = $state(false);
 
   const navLinks = [
     { name: 'Keunggulan', href: '#kenapa-harus-bergabung' },
