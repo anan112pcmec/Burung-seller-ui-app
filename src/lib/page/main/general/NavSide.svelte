@@ -58,17 +58,23 @@
         </button>
 
         <!-- Transaksi -->
-        <button type="button" class="p-2 text-zinc-700 hover:text-zinc-950 hover:bg-zinc-300/80 rounded transition-colors" title="Transaksi">
+        <button onclick={() => {
+            goto("/transaksi")
+        }} type="button" class="p-2 text-zinc-700 hover:text-zinc-950 hover:bg-zinc-300/80 rounded transition-colors" title="Transaksi">
           <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><path d="M12 6v12"/></svg>
         </button>
 
         <!-- Diskon -->
-        <button type="button" class="p-2 text-zinc-700 hover:text-zinc-950 hover:bg-zinc-300/80 rounded transition-colors" title="Diskon">
+        <button onclick={() => {
+            goto("/diskon")
+        }} type="button" class="p-2 text-zinc-700 hover:text-zinc-950 hover:bg-zinc-300/80 rounded transition-colors" title="Diskon">
           <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.41 2.41 0 0 0 3.408 0l5.88-5.88a2.41 2.41 0 0 0 0-3.408z"/><circle cx="7.5" cy="7.5" r=".5" fill="currentColor"/></svg>
         </button>
 
         <!-- Gudang / Alamat -->
-        <button type="button" class="p-2 text-zinc-700 hover:text-zinc-950 hover:bg-zinc-300/80 rounded transition-colors" title="Gudang">
+        <button onclick={() => {
+            goto("/gudang")
+        }} type="button" class="p-2 text-zinc-700 hover:text-zinc-950 hover:bg-zinc-300/80 rounded transition-colors" title="Gudang">
           <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 8.35V20a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8.35A2 2 0 0 1 3.26 6.5l8-3.2a2 2 0 0 1 1.48 0l8 3.2A2 2 0 0 1 22 8.35Z"/><path d="M6 18h12v-7H6v7Z"/></svg>
         </button>
 

@@ -170,7 +170,7 @@
 <section id="etalase-list" class="p-6 h-screen w-full border-t border-zinc-200 grid grid-rows-[auto_1fr] gap-6 bg-white text-zinc-800 font-sans">
   <div>
     <h1 class="mt-1 text-xl sm:text-2xl font-bold uppercase tracking-tight leading-none">
-      Etalase Kamu
+      Etalase Kamu /  12
     </h1>
   </div>
 
@@ -191,6 +191,7 @@
       />
     </div>
 
+   
     <!-- Controls Group -->
     <div class="flex items-center gap-2">
       <!-- Filter Status -->

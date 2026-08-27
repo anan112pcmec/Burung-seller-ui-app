@@ -7,7 +7,7 @@
 </script>
 
 {#snippet CardBarang(index: number)}
-  <div class="h-[14rem] w-[23.rem] border border-zinc-200 hover:border-zinc-400 rounded-lg bg-white overflow-hidden shadow-sm transition-all duration-150 flex flex-col group">
+  <div class="h-[14rem] w-[22.8rem] border border-zinc-200 hover:border-zinc-400 rounded-lg bg-white overflow-hidden shadow-sm transition-all duration-150 flex flex-col group">
     <div class="grid grid-cols-[34%_66%] h-full">
       
       <!-- SISI KIRI (34%) -->
