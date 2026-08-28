@@ -156,6 +156,41 @@
   <!-- Product Grid / Container -->
   <div class="flex flex-wrap gap-4 items-start w-full overflow-y-auto scrollbar-none pr-1">
     {#each Array(ulang) as _, i (i)}
+     {#if i === 0}
+  <button
+    type="button"
+    onclick={() => /* panggil handler modal / fungsi tambah */ {}}
+    class="group h-[14rem] w-[22.8rem] shrink-0 border-2 border-dashed border-zinc-300 hover:border-zinc-800 rounded-lg bg-zinc-50/60 hover:bg-white p-5 flex flex-col items-center justify-center text-center gap-3 transition-all duration-200 cursor-pointer shadow-2xs hover:shadow-sm focus:scale-90"
+  >
+    <!-- Icon Container dengan Badge Plus -->
+    <div class="relative flex items-center justify-center w-12 h-12 rounded-full bg-white border border-zinc-200 shadow-2xs text-zinc-500 group-hover:text-zinc-900 group-hover:border-zinc-400 group-hover:scale-110 transition-all duration-200">
+      <!-- Icon Cuboid / Barang -->
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 stroke-[1.75]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M10 22v-8"/>
+        <path d="M2.336 8.89 10 14l11.715-7.029"/>
+        <path d="M22 14a2 2 0 0 1-.971 1.715l-10 6a2 2 0 0 1-2.138-.05l-6-4A2 2 0 0 1 2 16v-6a2 2 0 0 1 .971-1.715l10-6a2 2 0 0 1 2.138.05l6 4A2 2 0 0 1 22 8z"/>
+      </svg>
+      
+      <!-- Badge Plus kecil -->
+      <span class="absolute -bottom-1 -right-1 flex items-center justify-center w-5 h-5 rounded-full bg-zinc-900 text-white shadow-2xs group-hover:bg-emerald-600 transition-colors">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 stroke-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12h14"/>
+          <path d="M12 5v14"/>
+        </svg>
+      </span>
+    </div>
+
+    <!-- Label & Deskripsi Singkat -->
+    <div class="space-y-0.5">
+      <span class="block text-xs font-bold uppercase tracking-wider text-zinc-700 group-hover:text-zinc-900 transition-colors">
+        Tambah Barang Baru
+      </span>
+      <p class="text-[10px] text-zinc-400">
+        Klik untuk mendaftarkan stok produk ke gudang
+      </p>
+    </div>
+  </button>
+{/if}
       {@render CardBarang(i)}
     {/each}
   </div>

@@ -232,6 +232,55 @@
   <!-- Etalase Grid / Container -->
   <div class="flex flex-wrap gap-4 items-start w-full overflow-y-auto scrollbar-none pr-1">
     {#each etalaseList as etalase, i (etalase.id_etalase)}
+      {#if i == 0}
+        <div class="h-[15.5rem] w-[23rem] shrink-0 border-2 border-dashed border-zinc-300 hover:border-zinc-400 rounded-lg bg-zinc-50/60 p-4 flex flex-col justify-between transition-all duration-150 shadow-2xs">
+          
+          <!-- Header Kartu Hardcoded -->
+          <div class="flex items-center gap-2.5 border-b border-zinc-200/80 pb-2.5">
+            <div class="w-7 h-7 rounded-full bg-zinc-900 text-white flex items-center justify-center shrink-0 shadow-2xs">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 stroke-2" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M5 12h14"/><path d="M12 5v14"/>
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-xs font-bold uppercase tracking-wide text-zinc-900 leading-none">
+                Tambah Etalase
+              </h3>
+              <span class="text-[10px] text-zinc-400">Buat kategori baru di toko</span>
+            </div>
+          </div>
+
+          <!-- Layout Form Static Hardcoded (Tanpa Logic/State) -->
+          <div class="flex-1 flex flex-col justify-between pt-2.5 gap-2">
+            <div class="space-y-2">
+              <div>
+                <label class="block text-[10px] font-bold uppercase tracking-wider text-zinc-600 mb-1">
+                  Nama Etalase
+                </label>
+                <input
+                  type="text"
+                  placeholder="misal: Koleksi Pria..."
+                  class="w-full bg-white border border-zinc-300 rounded px-2.5 py-1.5 text-xs text-zinc-800 placeholder-zinc-400 focus:outline-none focus:border-zinc-900"
+                />
+              </div>
+
+              <div>
+                <label class="block text-[10px] font-bold uppercase tracking-wider text-zinc-600 mb-1">
+                  Deskripsi
+                </label>
+                <textarea
+                  placeholder="Deskripsi singkat etalase..."
+                  rows="2"
+                  class="w-full bg-white border border-zinc-300 rounded px-2.5 py-1.5 text-[11px] text-zinc-800 placeholder-zinc-400 focus:outline-none focus:border-zinc-900 resize-none"
+                ></textarea>
+              </div>
+            </div>
+
+           
+          </div>
+
+        </div>
+      {/if}
       {@render CardEtalase(etalase, i)}
     {/each}
   </div>

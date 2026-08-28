@@ -111,7 +111,7 @@
 	{@const persenWaktu = persenWaktuBerjalan(diskon.berlaku_mulai_diskon_produk, diskon.berlaku_sampai_diskon_produk)}
 	{@const sisa = sisaHari(diskon.berlaku_sampai_diskon_produk)}
 	{@const aktif = diskon.status_diskon_produk === "Aktif"}
-	<div class="relative w-[23rem] flex-shrink-0 border border-zinc-200 hover:border-zinc-400 rounded-lg bg-white shadow-sm overflow-hidden flex transition-colors duration-150">
+	<div class="relative w-[23rem] h-[8rem] flex-shrink-0 border border-zinc-200 hover:border-zinc-400 rounded-lg bg-white shadow-sm overflow-hidden flex transition-colors duration-150">
 
 		<!-- SISI KIRI — stub kupon, persentase besar -->
 		<div class="w-24 flex-shrink-0 flex flex-col items-center justify-center gap-1 border-r border-dashed border-zinc-200 bg-zinc-50/60 py-4">
@@ -235,6 +235,22 @@
 	<!-- Diskon Grid / Container -->
 	<div class="flex flex-wrap gap-4 items-start w-full overflow-y-auto scrollbar-none pr-1">
 		{#each diskonList as diskon, i (diskon.id_diskon_produk)}
+			{#if i == 0}
+  <button
+    type="button"
+    class="w-[23rem] h-[8rem] flex-shrink-0 border-2 border-dashed border-zinc-300 hover:border-zinc-400 rounded-lg bg-zinc-50/60 hover:bg-zinc-100/80 p-4 flex flex-col items-center justify-center gap-1.5 transition-colors duration-150 cursor-pointer group"
+  >
+    <div class="w-8 h-8 rounded-full bg-zinc-200 group-hover:bg-zinc-900 group-hover:text-white text-zinc-700 flex items-center justify-center transition-colors">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <path d="M5 12h14"/><path d="M12 5v14"/>
+      </svg>
+    </div>
+    <div class="text-center">
+      <span class="block text-xs font-bold text-zinc-800 leading-tight">Tambah Diskon Baru</span>
+      <span class="block text-[10px] text-zinc-400 mt-0.5">Buat promo diskon produk untuk toko</span>
+    </div>
+  </button>
+{/if}
 			{@render CardDiskon(diskon, i)}
 		{/each}
 	</div>

@@ -134,7 +134,7 @@
 
 {#snippet CardGudang(gudang: GudangItem)}
   {@const tanpaTransaksi = gudang.jumlah_transaksi === 0}
-  <div class="w-[27rem] h-[14rem] grid grid-cols-[36%_64%] border border-zinc-200 hover:border-zinc-400 rounded-lg bg-white shadow-2xs transition-all duration-150 overflow-hidden shrink-0 p-4">
+  <div class="w-[22.92rem] h-[14rem] grid grid-cols-[36%_64%] border border-zinc-200 hover:border-zinc-400 rounded-lg bg-white shadow-2xs transition-all duration-150 overflow-hidden shrink-0 p-4">
     
     <!-- PETA (SISI KIRI) -->
     <div class="relative w-full h-full border-r border-zinc-200 bg-zinc-50 overflow-hidden">
@@ -279,7 +279,7 @@
   </div>
 
   <!-- Gudang Grid Container -->
-  <div class="flex flex-wrap gap-4 items-start w-full overflow-y-auto pr-1 pb-4">
+  <div class="flex flex-wrap gap-4 items-start w-full overflow-y-auto scrollbar-none pr-1 pb-4">
     {#if gudangTertampil.length === 0}
       <p class="text-xs text-zinc-400 font-mono py-8 w-full text-center">Tidak ada gudang yang cocok dengan pencarian.</p>
     {:else}

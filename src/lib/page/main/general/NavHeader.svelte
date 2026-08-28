@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { goto } from "$app/navigation";
+
   // Svelte 5 / TS Header Component
 </script>
 
@@ -22,7 +24,11 @@
     <!-- Notification Icon -->
     <button 
       type="button" 
-      class="p-1.5 text-zinc-600 hover:text-slate-900 hover:bg-zinc-900 rounded-sm transition-colors duration-150 focus:outline-none"
+      onclick={(e:Event) => {
+        e.preventDefault()
+        goto("/activity")
+      }} 
+      class="p-1.5 text-zinc-600 hover:text-white hover:bg-zinc-900 rounded-sm transition-colors duration-150 focus:outline-none"
       aria-label="Notifikasi"
     >
       <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
@@ -33,8 +39,12 @@
 
     <!-- Mail Icon -->
     <button 
-      type="button" 
-      class="p-1.5 text-zinc-600 hover:text-slate-900 hover:bg-zinc-900 rounded-sm transition-colors duration-150 focus:outline-none"
+      type="button"
+      onclick={(e:Event) => {
+        e.preventDefault()
+        goto("/mailbox")
+      }} 
+      class="p-1.5 text-zinc-600 hover:text-white hover:bg-zinc-900 rounded-sm transition-colors duration-150 focus:outline-none"
       aria-label="Pesan"
     >
       <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
