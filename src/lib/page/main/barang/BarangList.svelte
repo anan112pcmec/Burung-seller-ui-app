@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { goto } from '$app/navigation';
+
   let searchQuery = $state("");
   let selectedCategory = $state("all");
   let sortBy = $state("newest");
@@ -7,7 +9,7 @@
 </script>
 
 {#snippet CardBarang(index: number)}
-  <div class="h-[14rem] w-[22.8rem] border border-zinc-200 hover:border-zinc-400 rounded-lg bg-white overflow-hidden shadow-sm transition-all duration-150 flex flex-col group">
+  <button onclick={() =>{goto("/barang/details")}} class="h-[14rem] w-[22.8rem] border border-zinc-200 hover:border-zinc-400 rounded-lg bg-white overflow-hidden shadow-sm transition-all duration-150 flex flex-col group">
     <div class="grid grid-cols-[34%_66%] h-full">
       
       <!-- SISI KIRI (34%) -->
@@ -89,7 +91,7 @@
       </div>
 
     </div>
-  </div>
+  </button>
 {/snippet}
 
 <section id="barang-list" class="p-6 h-screen w-full border-t border-zinc-200 grid grid-rows-[auto_1fr] gap-6 bg-white text-zinc-800 font-sans">
@@ -159,7 +161,7 @@
      {#if i === 0}
   <button
     type="button"
-    onclick={() => /* panggil handler modal / fungsi tambah */ {}}
+    onclick={() => /* panggil handler modal / fungsi tambah */ { goto("/barang/tambah")}}
     class="group h-[14rem] w-[22.8rem] shrink-0 border-2 border-dashed border-zinc-300 hover:border-zinc-800 rounded-lg bg-zinc-50/60 hover:bg-white p-5 flex flex-col items-center justify-center text-center gap-3 transition-all duration-200 cursor-pointer shadow-2xs hover:shadow-sm focus:scale-90"
   >
     <!-- Icon Container dengan Badge Plus -->
