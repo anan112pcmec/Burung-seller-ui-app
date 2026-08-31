@@ -45,7 +45,7 @@
         <!-- Info Detail Barang -->
         <div class="flex flex-col justify-between border-b border-zinc-100 pb-2">
           <div>
-            <div class="flex items-center justify-between gap-1 mb-1">
+            <div class="flex items-start justify-between gap-1 mb-1">
               <span class="px-1.5 py-0.5 bg-zinc-100 text-zinc-700 text-[9px] font-medium rounded uppercase tracking-wider">
                 Elektronik
               </span>
@@ -63,8 +63,14 @@
         </div>
 
         <!-- Engagement Info -->
-        <div class="pt-2 flex flex-col justify-between">
-          <span class="text-[9px] font-semibold uppercase tracking-wider text-zinc-400">Metrik Aktivitas</span>
+        <div class="pt-2 flex flex-col justify-between *:">
+         <div onclick={(e: Event) => {
+          e.preventDefault();
+          e.stopPropagation();
+          goto("/barang/gudang");
+         }} class="p-3 text-xs font-bold flex items-center justify-center rounded-xl bg-zinc-500/20 space-x-2 text-zinc-800 line-clamp-3 leading-tight hover:rounded-lg hover:scale-95 duration-300 hover:bg-slate-950/90 hover:text-white">
+            <span>Kelola Gudang</span> <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chart-no-axes-combined-icon lucide-chart-no-axes-combined"><path d="M12 16v5"/><path d="M16 14.639V21"/><path d="M20 10.656V21"/><path d="m22 3-8.646 8.646a.5.5 0 0 1-.708 0L9.354 8.354a.5.5 0 0 0-.707 0L2 15"/><path d="M4 18.463V21"/><path d="M8 14.656V21"/></svg>
+         </div>
           <div class="grid grid-cols-2 gap-y-1.5 gap-x-2 text-[10px] text-zinc-600 font-mono">
             <!-- Transaksi -->
             <div class="flex items-center gap-1">
