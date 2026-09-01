@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { goto } from '$app/navigation';
+
 	interface DiskonItem {
 		id_diskon_produk: number;
 		nama_diskon_produk: string;
@@ -111,7 +113,9 @@
 	{@const persenWaktu = persenWaktuBerjalan(diskon.berlaku_mulai_diskon_produk, diskon.berlaku_sampai_diskon_produk)}
 	{@const sisa = sisaHari(diskon.berlaku_sampai_diskon_produk)}
 	{@const aktif = diskon.status_diskon_produk === "Aktif"}
-	<div class="relative w-[23rem] h-[8rem] flex-shrink-0 border border-zinc-200 hover:border-zinc-400 rounded-lg bg-white shadow-sm overflow-hidden flex transition-colors duration-150">
+	<button onclick={() => {
+		goto("/diskon/details")
+	}} class="relative w-[23rem] h-[8rem] flex-shrink-0 border border-zinc-200 hover:border-zinc-400 rounded-lg bg-white shadow-sm overflow-hidden flex transition-colors duration-150">
 
 		<!-- SISI KIRI — stub kupon, persentase besar -->
 		<div class="w-24 flex-shrink-0 flex flex-col items-center justify-center gap-1 border-r border-dashed border-zinc-200 bg-zinc-50/60 py-4">
@@ -167,7 +171,7 @@
 				</p>
 			</div>
 		</div>
-	</div>
+	</button>
 {/snippet}
 
 <section id="list-diskon" class="p-6 w-full grid grid-rows-[auto_1fr] gap-6 bg-white text-zinc-800 font-sans">

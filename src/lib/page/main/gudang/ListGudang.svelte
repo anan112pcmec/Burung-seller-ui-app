@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { goto } from '$app/navigation';
+
   interface GudangItem {
     id_alamat_gudang: number;
     panggilan_alamat_gudang: string;
@@ -132,9 +134,16 @@
   }
 </script>
 
+<style>
+  @keyframes scale-down {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(0.95); }
+}
+</style>
+
 {#snippet CardGudang(gudang: GudangItem)}
   {@const tanpaTransaksi = gudang.jumlah_transaksi === 0}
-  <div class="w-[22.92rem] h-[14rem] grid grid-cols-[36%_64%] border border-zinc-200 hover:border-zinc-400 rounded-lg bg-white shadow-2xs transition-all duration-150 overflow-hidden shrink-0 p-4">
+  <button onclick={() => {goto("/gudang/details")}} class="w-[22.92rem] h-[14rem] grid grid-cols-[36%_64%] border border-zinc-200 hover:border-zinc-400 rounded-lg bg-white shadow-2xs transition-all duration-150 overflow-hidden shrink-0 p-4">
     
     <!-- PETA (SISI KIRI) -->
     <div class="relative w-full h-full border-r border-zinc-200 bg-zinc-50 overflow-hidden">
@@ -201,17 +210,18 @@
             <span class="text-[8px] font-bold tracking-wider text-zinc-400 uppercase font-mono">Barang</span>
             <span class="text-xs font-bold font-mono tracking-tight text-zinc-900">{gudang.jumlah_barang}</span>
           </div>
-          <div class="flex flex-col">
-            <span class="text-[8px] font-bold tracking-wider text-zinc-400 uppercase font-mono">Transaksi</span>
-            <span class="text-xs font-bold font-mono tracking-tight {tanpaTransaksi ? 'text-zinc-400' : 'text-zinc-900'}">
-              {gudang.jumlah_transaksi}
-            </span>
+          <div role="button" aria-label="0" onclick={(e) => {
+            e.preventDefault()
+            e.stopPropagation()
+            goto("/gudang/live-metric")
+          }} class="flex items-center justify-center animate-[scale-down_300ms_ease-in-out_infinite]">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-radio-icon lucide-radio"><path d="M16.247 7.761a6 6 0 0 1 0 8.478"/><path d="M19.075 4.933a10 10 0 0 1 0 14.134"/><path d="M4.925 19.067a10 10 0 0 1 0-14.134"/><path d="M7.753 16.239a6 6 0 0 1 0-8.478"/><circle cx="12" cy="12" r="2"/></svg>
           </div>
         </div>
       </div>
     </div>
 
-  </div>
+  </button>
 {/snippet}
 
 <section id="list-gudang" class="p-8 h-screen w-full border-t border-zinc-200 grid grid-rows-[auto_auto_1fr] gap-4 bg-white text-zinc-800 font-sans">
