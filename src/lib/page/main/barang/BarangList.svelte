@@ -9,7 +9,7 @@
 </script>
 
 {#snippet CardBarang(index: number)}
-  <button onclick={() =>{goto("/barang/details")}} class="h-[14rem] w-[22.8rem] border border-zinc-200 hover:border-zinc-400 rounded-lg bg-white overflow-hidden shadow-sm transition-all duration-150 flex flex-col group">
+  <div class="h-[14rem] w-[22.8rem] border border-zinc-200 hover:border-zinc-400 rounded-lg bg-white overflow-hidden shadow-sm transition-all duration-150 flex flex-col group">
     <div class="grid grid-cols-[34%_66%] h-full">
       
       <!-- SISI KIRI (34%) -->
@@ -28,15 +28,28 @@
 
         <!-- Visual Mini Donut Chart Data Kategori -->
         <div class="p-2 flex flex-col items-center justify-center gap-1 bg-white">
-          <div class="relative w-10 h-10">
-            <svg class="w-full h-full -rotate-90" viewBox="0 0 36 36">
-              <circle cx="18" cy="18" r="15.915" fill="none" class="stroke-zinc-100" stroke-width="3.5" />
-              <circle cx="18" cy="18" r="15.915" fill="none" class="stroke-zinc-900" stroke-width="3.5" stroke-dasharray="70 30" stroke-dashoffset="0" />
-              <circle cx="18" cy="18" r="15.915" fill="none" class="stroke-slate-400" stroke-width="3.5" stroke-dasharray="20 80" stroke-dashoffset="-70" />
-            </svg>
-            <span class="absolute inset-0 flex items-center justify-center text-[9px] font-bold font-mono text-zinc-700">70%</span>
+         <div class="grid grid-cols-2 gap-y-4 gap-x-2 text-[10px] text-zinc-600 font-mono">
+            <!-- Transaksi -->
+            <div class="flex items-center gap-1">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 text-zinc-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+              <span>1.2k</span>
+            </div>
+            <!-- Likes -->
+            <div class="flex items-center gap-1">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 text-zinc-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+              <span>342</span>
+            </div>
+            <!-- Comments -->
+            <div class="flex items-center gap-1">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 text-zinc-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
+              <span>89</span>
+            </div>
+            <!-- Saves/Archive -->
+            <div class="flex items-center gap-1">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 text-zinc-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></svg>
+              <span>154</span>
+            </div>
           </div>
-          <span class="text-[9px] text-zinc-400 font-medium tracking-tight truncate w-full text-center">Top Sold Category</span>
         </div>
       </div>
 
@@ -63,41 +76,66 @@
         </div>
 
         <!-- Engagement Info -->
-        <div class="pt-2 flex flex-col justify-between *:">
-         <div onclick={(e: Event) => {
-          e.preventDefault();
-          e.stopPropagation();
-          goto("/barang/gudang");
-         }} class="p-3 text-xs font-bold flex items-center justify-center rounded-xl bg-zinc-500/20 space-x-2 text-zinc-800 line-clamp-3 leading-tight hover:rounded-lg hover:scale-95 duration-300 hover:bg-slate-950/90 hover:text-white">
-            <span>Kelola Gudang</span> <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chart-no-axes-combined-icon lucide-chart-no-axes-combined"><path d="M12 16v5"/><path d="M16 14.639V21"/><path d="M20 10.656V21"/><path d="m22 3-8.646 8.646a.5.5 0 0 1-.708 0L9.354 8.354a.5.5 0 0 0-.707 0L2 15"/><path d="M4 18.463V21"/><path d="M8 14.656V21"/></svg>
-         </div>
-          <div class="grid grid-cols-2 gap-y-1.5 gap-x-2 text-[10px] text-zinc-600 font-mono">
-            <!-- Transaksi -->
-            <div class="flex items-center gap-1">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 text-zinc-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-              <span>1.2k trx</span>
-            </div>
-            <!-- Likes -->
-            <div class="flex items-center gap-1">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 text-zinc-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
-              <span>342</span>
-            </div>
-            <!-- Comments -->
-            <div class="flex items-center gap-1">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 text-zinc-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
-              <span>89</span>
-            </div>
-            <!-- Saves/Archive -->
-            <div class="flex items-center gap-1">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 text-zinc-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></svg>
-              <span>154</span>
-            </div>
-          </div>
-        </div>
+        <div class="pt-2 flex items-center space-x-5 justify-center">
+  <button 
+    onclick={(e: Event) => {
+      e.preventDefault();
+      e.stopPropagation();
+      goto("/barang/gudang");
+    }}
+    aria-label="Kelola Gudang"
+    class="relative group p-2.5 flex items-center justify-center rounded-xl bg-zinc-100 text-zinc-600 hover:bg-amber-500/10 hover:text-amber-600 hover:border-amber-500/30 border border-zinc-200/80 transition-all duration-200 active:scale-95 cursor-pointer shadow-xs"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-warehouse transition-transform group-hover:scale-110">
+      <path d="M22 8.35V20a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8.35a2 2 0 0 1 1.12-1.78l8-4a2 2 0 0 1 1.76 0l8 4A2 2 0 0 1 22 8.35Z"/>
+      <path d="M6 18v-4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v4"/>
+      <path d="M6 14h12"/>
+    </svg>
+    <span class="absolute -top-9 scale-0 group-hover:scale-100 transition-all duration-150 rounded bg-zinc-900 px-2 py-1 text-[10px] font-medium text-white pointer-events-none whitespace-nowrap z-10 shadow-md">
+      Kelola Gudang
+    </span>
+  </button>
+
+  <button 
+    onclick={(e: Event) => {
+      e.preventDefault();
+      e.stopPropagation();
+      goto("/barang/metric");
+    }}
+    aria-label="Metric Penjualan"
+    class="relative group p-2.5 flex items-center justify-center rounded-xl bg-zinc-100 text-zinc-600 hover:bg-emerald-500/10 hover:text-emerald-600 hover:border-emerald-500/30 border border-zinc-200/80 transition-all duration-200 active:scale-95 cursor-pointer shadow-xs"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-up transition-transform group-hover:scale-110">
+      <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/>
+      <polyline points="16 7 22 7 22 13"/>
+    </svg>
+    <span class="absolute -top-9 scale-0 group-hover:scale-100 transition-all duration-150 rounded bg-zinc-900 px-2 py-1 text-[10px] font-medium text-white pointer-events-none whitespace-nowrap z-10 shadow-md">
+      Metric Penjualan
+    </span>
+  </button>
+
+  <button 
+    onclick={(e: Event) => {
+      e.preventDefault();
+      e.stopPropagation();
+      goto("/barang/details");
+    }}
+    aria-label="Detail & Edit Barang"
+    class="relative group p-2.5 flex items-center justify-center rounded-xl bg-zinc-100 text-zinc-600 hover:bg-blue-500/10 hover:text-blue-600 hover:border-blue-500/30 border border-zinc-200/80 transition-all duration-200 active:scale-95 cursor-pointer shadow-xs"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-square-pen transition-transform group-hover:scale-110">
+      <path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+      <path d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z"/>
+    </svg>
+    <span class="absolute -top-9 scale-0 group-hover:scale-100 transition-all duration-150 rounded bg-zinc-900 px-2 py-1 text-[10px] font-medium text-white pointer-events-none whitespace-nowrap z-10 shadow-md">
+      Detail & Edit
+    </span>
+  </button>
+</div>
       </div>
 
     </div>
-  </button>
+  </div>
 {/snippet}
 
 <section id="barang-list" class="p-6 h-screen w-full border-t border-zinc-200 grid grid-rows-[auto_1fr] gap-6 bg-white text-zinc-800 font-sans">

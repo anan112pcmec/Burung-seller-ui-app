@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { goto } from '$app/navigation';
+
   interface Etalase {
     id_etalase: number;
     id_seller_etalase: number;
@@ -90,7 +92,9 @@
     'from-zinc-800 via-teal-900 to-zinc-950'
   ][index % 4]}
 
-  <div class="h-[15.5rem] w-[23rem] border border-zinc-200 hover:border-zinc-400 rounded-lg bg-white overflow-hidden shadow-sm transition-all duration-150 flex flex-col group">
+  <button onclick={() =>{
+    goto("etalase/details")
+  }} class="h-[15.5rem] w-[23rem] border border-zinc-200 hover:border-zinc-400 rounded-lg bg-white overflow-hidden shadow-sm transition-all duration-150 flex flex-col group">
 
     <!-- BANNER — identitas etalase, kayak header profil/channel -->
     <div class="relative h-[4.75rem] w-full shrink-0 overflow-hidden bg-gradient-to-br {banner}">
@@ -164,7 +168,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </button>
 {/snippet}
 
 <section id="etalase-list" class="p-6 h-screen w-full border-t border-zinc-200 grid grid-rows-[auto_1fr] gap-6 bg-white text-zinc-800 font-sans">
