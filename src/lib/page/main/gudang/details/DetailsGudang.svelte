@@ -1,4 +1,7 @@
 <script lang="ts">
+  import CardProduk from "../../general/CardProduk.svelte";
+
+	const ulang = 10;
 	// ///////////////////////////////////////////////////////////////////////
 	// Types
 	// ///////////////////////////////////////////////////////////////////////
@@ -281,5 +284,60 @@
 				</div>
 			</div>
 		</div>
+		<div class="mt-10">
+    <div class="flex items-center justify-between mb-3">
+   <div>
+				<span class="text-[9px] sm:text-[10px] font-bold tracking-[0.18em] text-slate-950/40 uppercase font-mono">
+					DETAIL ALAMAT GUDANG
+				</span>
+				<h2 class="mt-1 text-lg sm:text-xl font-bold uppercase tracking-tight leading-none">
+					Barang Dalam Gudang
+				</h2>
+			</div>
+    
+    <div class="flex items-center gap-2">
+        <!-- Search Input -->
+        <input
+            type="text"
+            placeholder="Cari nama barang..."
+            class="px-2.5 py-1 text-[10px] font-sans bg-white border border-slate-300 rounded-xs text-slate-950 placeholder:text-slate-400 focus:outline-none focus:border-slate-950 transition-colors"
+        />
+
+        <!-- Sort Dropdown -->
+        <select
+            class="px-2.5 py-1 text-[10px] font-sans bg-white border border-slate-300 rounded-xs text-slate-950 focus:outline-none focus:border-slate-950 transition-colors cursor-pointer"
+        >
+            <option value="terbaru">Urutkan: Terbaru</option>
+            <option value="harga_asc">Harga: Rendah ke Tinggi</option>
+            <option value="harga_desc">Harga: Tinggi ke Rendah</option>
+            <option value="populer">Paling Populer</option>
+        </select>
+
+        <button
+            class="text-[9px] sm:text-[10px] font-medium uppercase tracking-wider border rounded-xs px-3 py-1.5 transition-colors border-slate-950 text-slate-950 hover:bg-slate-950 hover:text-white shrink-0"
+        >
+            + Tambah Barang
+        </button>
+    </div>
+</div>
+
+    <div class="flex flex-wrap gap-4">
+        {#each Array(ulang) as _}
+            <CardProduk
+                kategori="Elektronik" 
+                harga={850000} 
+                nama="Wireless Mechanical Keyboard" 
+                deskripsi="Keyboard mekanik 65% dengan konektivitas Bluetooth 5.1 dan Gateron switches." 
+                viewed={1420} 
+                likes={310} 
+                total_komen={45} 
+                action={() => {}} 
+                action_el={null} 
+                photo="https://via.placeholder.com/150" 
+            />
+        {/each}
+    </div>
+</div>
 	</div>
+	
 </section>
