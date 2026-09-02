@@ -1,4 +1,6 @@
 <script lang="ts">
+  import CardProduk from "../../general/CardProduk.svelte";
+
 	interface DiskonProduk {
 		id_diskon_produk: number;
 		nama_diskon_produk: string;
@@ -174,36 +176,20 @@
 			</button>
 		</div>
 
-		<div class="border border-zinc-800/20 rounded-sm divide-y divide-zinc-100">
+		<div class="flex flex-wrap gap-4">
 			{#each barangList as barang (barang.id_barang_di_diskon)}
-				<div class="flex items-center gap-3 p-3 sm:p-3.5">
-					<div class="w-10 h-10 rounded bg-zinc-100 flex-shrink-0"></div>
-
-					<div class="flex-1 min-w-0">
-						<p class="text-xs font-medium text-zinc-800 truncate">{barang.nama_barang}</p>
-						<p class="text-[10px] text-zinc-400 font-sans mt-0.5">{barang.nama_kategori_barang}</p>
-					</div>
-
-					<div class="flex flex-col items-end flex-shrink-0">
-						<span class="text-[10px] text-zinc-400 line-through font-sans">{formatRupiah(barang.harga_barang)}</span>
-						<span class="text-xs font-bold font-sans text-teal-700">{formatRupiah(hargaSetelahDiskon(barang.harga_barang))}</span>
-					</div>
-
-					<span class="px-1.5 py-0.5 rounded text-[8px] font-medium uppercase tracking-wider flex-shrink-0 {statusBarangClass(barang.status_barang_di_diskon)}">
-						{barang.status_barang_di_diskon}
-					</span>
-
-					<button
-						onclick={() => handleHapusBarang(barang.id_barang_di_diskon)}
-						disabled={!bisaDiedit}
-						class="flex-shrink-0 {bisaDiedit ? 'text-zinc-400 hover:text-rose-600' : 'text-zinc-200 cursor-not-allowed'}"
-						aria-label="Hapus barang dari diskon"
-					>
-						<svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75">
-							<path d="M6 6h12M9 6V4h6v2m-8 0v14a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V6"/>
-						</svg>
-					</button>
-				</div>
+				<CardProduk
+					kategori="Elektronik" 
+					harga={850000} 
+					nama="Wireless Mechanical Keyboard" 
+					deskripsi="Keyboard mekanik 65% dengan konektivitas Bluetooth 5.1 dan Gateron switches." 
+					viewed={1420} 
+					likes={310} 
+					total_komen={45} 
+					action={() => {}} 
+					action_el={null} 
+					photo="https://via.placeholder.com/150" 
+					/>
 			{/each}
 
 			{#if barangList.length === 0}

@@ -187,7 +187,7 @@
 			ANALITIK BARANG INDUK
 		</span>
 		<h1 class="mt-1 text-xl sm:text-2xl font-bold uppercase tracking-tight leading-none">
-			Barang &amp; Kategori
+			NIKE A1 
 		</h1>
 	</div>
 
