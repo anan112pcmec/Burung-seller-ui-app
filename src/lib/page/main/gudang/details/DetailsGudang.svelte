@@ -196,7 +196,7 @@
             <!-- VISUAL 3: Arus Inbound vs Outbound Ringkas -->
             <div class="flex flex-col gap-2">
                 <span class="text-[10px] font-bold text-slate-700 uppercase tracking-wider">
-                    Rasio Inbound vs Outbound (Bulan Ini)
+                    Rasio Barang Masuk vs Barang Keluar (Bulan Ini)
                 </span>
                 <div class="bg-white p-3 border border-zinc-200 rounded-xs flex flex-col gap-2">
                     <div class="flex justify-between items-center text-[10px]">
