@@ -68,7 +68,7 @@
     <!-- Dropdown Menu -->
     <div class="absolute top-full right-0 pt-2 invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-200 z-[99]">
         <div class="w-44 sm:w-48 bg-white border border-gray-100 rounded-lg shadow-xl py-1">
-            <a href="/toko" class="block px-4 py-2 text-xs text-gray-700 hover:bg-gray-50 hover:text-slate-900">Toko</a>
+            <a href="/profiling" class="block px-4 py-2 text-xs text-gray-700 hover:bg-gray-50 hover:text-slate-900">Toko</a>
             <a href="/overview" class="flex justify-between items-center px-4 py-2 text-xs text-gray-700 hover:bg-gray-50 hover:text-slate-900">
                 <span>Overview</span>
                 <span class="bg-amber-100 text-amber-800 text-[9px] font-bold px-1.5 py-0.5 rounded-full">Profiling</span>

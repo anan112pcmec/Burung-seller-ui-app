@@ -95,7 +95,7 @@
 					<path stroke-linecap="square" stroke-linejoin="miter" d="M12 4v16m8-8H4" />
 				</svg>
 				<span class="font-mono font-bold text-[11px] uppercase tracking-widest text-white">
-					Ikuti Toko
+					
 				</span>
 			</button>
 		</div>

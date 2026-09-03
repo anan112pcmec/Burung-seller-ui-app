@@ -176,6 +176,19 @@
 			riwayatDilihat: [150, 160, 155, 170, 180, 175, 190]
 		}
 	];
+
+    let listDummyPhoto: string[] = [
+        'https://picsum.photos/seed/prod-kaos-polos/300/300',
+        'https://picsum.photos/seed/prod-sepatu-sneaker/300/300',
+        'https://picsum.photos/seed/prod-jam-tangan/300/300',
+        'https://picsum.photos/seed/prod-tas-ransel/300/300',
+        'https://picsum.photos/seed/prod-topi-baseball/300/300',
+        'https://picsum.photos/seed/prod-jaket-denim/300/300',
+        'https://picsum.photos/seed/prod-kacamata/300/300',
+        'https://picsum.photos/seed/prod-dompet-kulit/300/300'
+    ];
+
+	
 </script>
 
 <section id="metric-barang" class="w-full bg-white p-4 sm:p-6 lg:p-8 text-slate-950">
@@ -210,21 +223,46 @@
 		</div>
 
 		<!-- 4. STOK KRITIS — actionable -->
-		<div class="lg:col-span-6 border border-zinc-800/20 rounded-sm p-4 sm:p-5 flex flex-col justify-between">
-			<div class="flex items-center justify-between gap-2">
-				<span class="text-[9px] sm:text-[10px] font-bold tracking-[0.15em] text-slate-950/40 uppercase font-mono">
-					STOK KRITIS
-				</span>
-				{#if stokKritisCount > 0}
-					<span class="w-1.5 h-1.5 rounded-full bg-teal-600 flex-shrink-0"></span>
-				{/if}
-			</div>
-			<span class="mt-2 text-2xl sm:text-3xl font-bold font-mono tracking-tight">
-				{stokKritisCount}
-			</span>
-			<p class="text-[9px] sm:text-[10px] text-slate-400 font-light mt-3">
-				varian dengan stok di bawah {ambangStokKritis} unit
-			</p>
+		<div class="grid grid-cols-[40%_40%_20%] w-full lg:col-span-6 border border-slate-300 ">
+				<div class=" w-full p-3">
+					<div class=" gap-2">
+						<span class="text-[9px] sm:text-[10px] font-bold tracking-[0.15em] text-slate-950/40 uppercase font-mono">
+							STOK KRITIS
+						</span>
+						{#if stokKritisCount > 0}
+							<span class="w-1.5 h-1.5 rounded-full bg-rose-600 flex-shrink-0"></span>
+						{/if}
+					</div>
+					<span class="mt-2 text-2xl sm:text-3xl font-bold font-mono tracking-tight">
+						{stokKritisCount}
+					</span>
+					<div class="w-full ">
+						<p class="text-[9px] sm:text-[10px] text-slate-400 font-light mt-3">
+						kategori dengan stok di bawah {ambangStokKritis} unit
+					</p>
+					</div>
+				</div>
+				<div class="flex items-center gap-3 overflow-x-auto  scrollbar-none">
+        {#each listDummyPhoto as fotoUrl}
+            <div class="w-14 h-14 flex-shrink-0 rounded-sm border border-zinc-200 overflow-hidden bg-zinc-50">
+                <img 
+                    src={fotoUrl} 
+                    alt="Foto produk kritis" 
+                    class="w-full h-full object-cover hover:scale-105 transition-transform duration-200" 
+                />
+            </div>
+        {/each}
+    </div>
+				<div class="border-slate-300 w-full flex justify-center items-center">
+    {#if stokKritisCount > 0}
+        <div class="relative flex items-center justify-center w-5 h-5">
+            <!-- Efek gelombang berdetak di belakang -->
+            <span class="absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75 animate-ping"></span>
+            <!-- Titik utama -->
+            <span class="relative inline-flex w-3.5 h-3.5 rounded-full bg-rose-600"></span>
+        </div>
+    {/if}
+</div>
 		</div>
 
 		<!-- 1. KATEGORI PALING DIMINATI — ranking -->
@@ -289,10 +327,8 @@
 
 		<div class="flex flex-col gap-3 max-h-[42rem] overflow-y-auto scrollbar-none pr-1">
 			{#each kategoriBarangList as item (item.id)}
-				{@const likesPts = toPoints(item.riwayatLikes, SPARK_W, SPARK_H, SPARK_PAD)}
+				
 				{@const penjualanPts = toPoints(item.riwayatPenjualan, SPARK_W, SPARK_H, SPARK_PAD)}
-				{@const wishlistPts = toPoints(item.riwayatWishlist, SPARK_W, SPARK_H, SPARK_PAD)}
-				{@const dilihatPts = toPoints(item.riwayatDilihat, SPARK_W, SPARK_H, SPARK_PAD)}
 
 				<div class="border border-zinc-200 hover:border-zinc-400 rounded-lg bg-white shadow-sm overflow-hidden transition-colors duration-150">
 					<div class="grid grid-cols-1 sm:grid-cols-[9rem_1fr] lg:grid-cols-[9rem_1fr_auto]">
@@ -326,64 +362,23 @@
 						</div>
 
 						<!-- METRIK + KURVA -->
-						<div class="grid grid-cols-2 gap-x-4 gap-y-3 p-3 sm:p-4 border-t sm:border-t-0 sm:border-l border-zinc-100 bg-zinc-50/40">
-							<!-- Likes -->
-							<div class="flex items-center gap-2">
-								<svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 text-rose-400 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-									<path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
-								</svg>
-								<div>
-									<p class="text-[10px] font-bold font-mono text-zinc-800 leading-none">{item.riwayatLikes[item.riwayatLikes.length - 1]}</p>
-									<p class="text-[8px] text-zinc-400 uppercase tracking-wider">Likes</p>
+						<div class="p-4 border-t sm:border-t-0 sm:border-l border-zinc-100 bg-zinc-50/40 flex items-center w-full">
+							<!-- Penjualan (Memenuhi Parent) -->
+							<div class="flex items-center justify-between w-full gap-4">
+								<div class="flex items-center gap-2.5">
+									<svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-teal-600 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+										<path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/>
+									</svg>
+									<div>
+										<p class="text-xs font-bold font-mono text-zinc-800 leading-none">{item.riwayatPenjualan[item.riwayatPenjualan.length - 1]}</p>
+										<p class="text-[9px] text-zinc-400 uppercase tracking-wider mt-0.5">Penjualan</p>
+									</div>
 								</div>
-								<svg viewBox="0 0 {SPARK_W} {SPARK_H}" class="w-12 h-5 ml-auto flex-shrink-0" preserveAspectRatio="none">
-									<path d={areaPath(likesPts, SPARK_H, SPARK_PAD)} class="fill-rose-400/10" />
-									<path d={linePath(likesPts)} fill="none" class="stroke-rose-400" stroke-width="1.5" />
-								</svg>
-							</div>
-
-							<!-- Penjualan -->
-							<div class="flex items-center gap-2">
-								<svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 text-teal-600 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-									<path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/>
-								</svg>
-								<div>
-									<p class="text-[10px] font-bold font-mono text-zinc-800 leading-none">{item.riwayatPenjualan[item.riwayatPenjualan.length - 1]}</p>
-									<p class="text-[8px] text-zinc-400 uppercase tracking-wider">Penjualan</p>
-								</div>
-								<svg viewBox="0 0 {SPARK_W} {SPARK_H}" class="w-12 h-5 ml-auto flex-shrink-0" preserveAspectRatio="none">
+								
+								<!-- Sparkline yang melebar memenuhi sisa ruang -->
+								<svg viewBox="0 0 {SPARK_W} {SPARK_H}" class="w-32 sm:w-44 h-8 flex-shrink-0" preserveAspectRatio="none">
 									<path d={areaPath(penjualanPts, SPARK_H, SPARK_PAD)} class="fill-teal-600/10" />
 									<path d={linePath(penjualanPts)} fill="none" class="stroke-teal-600" stroke-width="1.5" />
-								</svg>
-							</div>
-
-							<!-- Wishlist -->
-							<div class="flex items-center gap-2">
-								<svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 text-amber-500 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-									<path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/>
-								</svg>
-								<div>
-									<p class="text-[10px] font-bold font-mono text-zinc-800 leading-none">{item.riwayatWishlist[item.riwayatWishlist.length - 1]}</p>
-									<p class="text-[8px] text-zinc-400 uppercase tracking-wider">Wishlist</p>
-								</div>
-								<svg viewBox="0 0 {SPARK_W} {SPARK_H}" class="w-12 h-5 ml-auto flex-shrink-0" preserveAspectRatio="none">
-									<path d={areaPath(wishlistPts, SPARK_H, SPARK_PAD)} class="fill-amber-500/10" />
-									<path d={linePath(wishlistPts)} fill="none" class="stroke-amber-500" stroke-width="1.5" />
-								</svg>
-							</div>
-
-							<!-- Dilihat -->
-							<div class="flex items-center gap-2">
-								<svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 text-slate-500 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-									<path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/>
-								</svg>
-								<div>
-									<p class="text-[10px] font-bold font-mono text-zinc-800 leading-none">{item.riwayatDilihat[item.riwayatDilihat.length - 1]}</p>
-									<p class="text-[8px] text-zinc-400 uppercase tracking-wider">Dilihat</p>
-								</div>
-								<svg viewBox="0 0 {SPARK_W} {SPARK_H}" class="w-12 h-5 ml-auto flex-shrink-0" preserveAspectRatio="none">
-									<path d={areaPath(dilihatPts, SPARK_H, SPARK_PAD)} class="fill-slate-400/10" />
-									<path d={linePath(dilihatPts)} fill="none" class="stroke-slate-400" stroke-width="1.5" />
 								</svg>
 							</div>
 						</div>

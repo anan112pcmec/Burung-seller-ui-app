@@ -102,7 +102,7 @@
 </script>
 
 <section id="details-gudang" class="w-full bg-white text-slate-950">
-	<div class="col-span-1 lg:col-span-12 border border-zinc-800/20 rounded-sm p-4 sm:p-5 mt-2">
+	<div class="col-span-1 lg:col-span-12 rounded-sm p-4 sm:p-5 mt-2">
     <div class="flex items-center justify-between pb-3 mb-4 border-b border-zinc-800/10">
         <div>
             <span class="text-[9px] font-bold tracking-[0.15em] text-slate-950/40 uppercase font-mono">
@@ -110,7 +110,7 @@
             </span>
             <h3 class="text-xs sm:text-sm font-bold uppercase tracking-tight"> Visualisasi Performa Gudang</h3>
         </div>
-        <span class="text-[10px] font-mono text-slate-500">Update Realtime</span>
+       
     </div>
 
     <!-- Ringkasan KPI Cards (Visual 2 & 5) -->

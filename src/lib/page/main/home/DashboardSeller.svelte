@@ -8,12 +8,7 @@
 		jumlah: number;
 	}
 
-	interface RekeningDefault {
-		namaBank: string;
-		nomorRekening: string;
-		pemilik: string;
-		adaRekening: boolean;
-	}
+	
 
 	interface KinerjaPengiriman {
 		reguler: number;
@@ -45,6 +40,21 @@
 		sisaWaktuLabel: string;
 	}
 
+	interface Komplain {
+		foto_profil: string,
+		nama: string, 
+		pesan: string,
+		created_at: string
+	}
+
+	interface Pesanan {
+		foto_barang: string
+		nama_barang: string,
+		kategori_barang: string,
+		harga_barang: number,
+		kuantitas: number,
+	}
+
 	// ///////////////////////////////////////////////////////////////////////
 	// Mock Data — ganti dengan hasil fetch dari service masing-masing
 	// ///////////////////////////////////////////////////////////////////////
@@ -59,12 +69,6 @@
 		{ label: 'Selesai (7 Hari)', jumlah: 62 }
 	]);
 
-	let rekening: RekeningDefault = $state({
-		namaBank: 'BCA',
-		nomorRekening: '5280 •••• 1123',
-		pemilik: 'Siti Rahmawati',
-		adaRekening: true
-	});
 
 	let pengiriman: KinerjaPengiriman = $state({
 		reguler: 46,
@@ -106,6 +110,80 @@
 	let totalPengiriman = $derived(pengiriman.reguler + pengiriman.ekspedisi);
 	let persenReguler = $derived(Math.round((pengiriman.reguler / totalPengiriman) * 100));
 	let persenEkspedisi = $derived(100 - persenReguler);
+
+	let listKomplain: Komplain[] = [
+		{
+			foto_profil: "free_image",
+			nama: "Faiz",
+			pesan: "bagaimana ini pengiriman nya bermasalah",
+			created_at: "20-12-2026"
+		},
+		{
+			foto_profil: "free_image",
+			nama: "iconk",
+			pesan: "ini gimana ya kok barang saya tidak lengkap",
+			created_at: "20-11-2026"
+		},
+		{
+			foto_profil: "free_image",
+			nama: "ical",
+			pesan: "gabaik nih seller pelayanan nya",
+			created_at: "20-01-2026"
+		},
+		{
+			foto_profil: "free_image",
+			nama: "bambang",
+			pesan: "gak sesuai produk yang dikirim dengan produk yang diberikan",
+			created_at: "20-02-2026"
+		},
+	]
+
+	let listPesanan: Pesanan[] = [
+    {
+        foto_barang: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=100&auto=format&fit=crop&q=60",
+        nama_barang: "Sepatu Nike Air Jordan",
+        kategori_barang: "Nike Jordan A1",
+        harga_barang: 2999999,
+        kuantitas: 2
+    },
+    {
+        foto_barang: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=100&auto=format&fit=crop&q=60",
+        nama_barang: "Smartwatch Series 8",
+        kategori_barang: "Apple Gadget",
+        harga_barang: 5499000,
+        kuantitas: 1
+    },
+    {
+        foto_barang: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=100&auto=format&fit=crop&q=60",
+        nama_barang: "Headphone Wireless ANC",
+        kategori_barang: "Audio & Music",
+        harga_barang: 1250000,
+        kuantitas: 3
+    },
+    {
+        foto_barang: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=100&auto=format&fit=crop&q=60",
+        nama_barang: "Mechanical Keyboard RGB",
+        kategori_barang: "Computer Gear",
+        harga_barang: 850000,
+        kuantitas: 1
+    },
+    {
+        foto_barang: "https://images.unsplash.com/photo-1491553895911-0055eca6402d?w=100&auto=format&fit=crop&q=60",
+        nama_barang: "Sneakers Adidas Ultraboost",
+        kategori_barang: "Adidas Running",
+        harga_barang: 2100000,
+        kuantitas: 2
+    }
+];
+
+function totalkanPesanan(pesanan: Pesanan[]): number {
+	let total: number = 0;
+	for (const p of pesanan) {
+		total = total + p.kuantitas;
+	}
+
+	return total;
+}
 </script>
 
 <section id="dashboard-seller" class="w-full min-h-screen bg-white p-4 sm:p-6 lg:p-8 text-slate-950 scrollbar-none">
@@ -211,71 +289,95 @@
 		</div>
 
 		<!-- 2. REKENING & PENCAIRAN -->
-		<div class="lg:col-span-3 border border-zinc-800/20 rounded-sm p-4 sm:p-5 flex flex-col justify-between">
-			<span class="text-[9px] sm:text-[10px] font-bold tracking-[0.18em] text-slate-950/40 uppercase font-mono">
-				PENCAIRAN DANA
-			</span>
+	<div class="lg:col-span-3 border border-zinc-200 bg-white rounded-md p-4 sm:p-5 flex flex-col justify-around shadow-xs">
+    <!-- Header -->
+    <div class="flex items-center justify-between mb-3">
+        <span class="text-[10px] font-bold tracking-[0.15em] text-zinc-500 uppercase font-mono flex items-center gap-2">
+            Informasi Komplain 
+            <span class="bg-zinc-900 text-white text-[9px] px-2 py-0.5 rounded-full font-sans">
+                {listKomplain.length}
+            </span>
+        </span>
+    </div>
 
-			{#if rekening.adaRekening}
-				<div class="mt-3">
-					<p class="text-sm sm:text-base font-bold uppercase tracking-tight">{rekening.namaBank}</p>
-					<p class="text-[10px] sm:text-[11px] font-mono text-slate-500 mt-0.5">{rekening.nomorRekening}</p>
-					<span class="inline-block mt-2 text-[8px] sm:text-[9px] font-bold uppercase tracking-wider border border-zinc-800/20 px-1.5 py-0.5 rounded-xs">
-						Rekening Default
-					</span>
-				</div>
-			{:else}
-				<div class="mt-3">
-					<p class="text-[11px] sm:text-xs text-slate-600 font-light leading-relaxed">
-						Belum ada rekening default. Dana hasil penjualan tidak bisa dicairkan.
-					</p>
-				</div>
-			{/if}
+    <!-- List Komplain Container -->
+    <div class="w-full space-y-3 overflow-y-auto scrollbar-none rounded h-48 sm:h-56">
+        {#each listKomplain as komplain}
+            <div class="flex items-start space-x-3 p-2 rounded hover:bg-white transition-colors border border-transparent hover:border-zinc-200/60">
+                <!-- Avatar -->
+                <div class="bg-zinc-200 h-7 w-7 rounded-full overflow-hidden shrink-0"> 
+                    <img src="{komplain.foto_profil}" alt="{komplain.nama}" class="h-full w-full object-cover">
+                </div>
+                <!-- Text Content (min-w-0 wajib agar truncate berfungsi dalam flex) -->
+                <div class="flex flex-col min-w-0 flex-1">
+                    <span class="text-zinc-800 text-[11px] font-medium leading-tight">{komplain.nama}</span>
+                    <span class="text-zinc-400 text-[10px] truncate mt-0.5">{komplain.pesan}</span>
+                </div>
+            </div>
+        {/each}
+    </div>
 
-			<button
-				type="button"
-				class="mt-4 w-full border border-zinc-800/30 py-2 text-[9px] font-medium tracking-[0.15em] uppercase rounded-xs hover:bg-slate-950 hover:text-white transition duration-300"
-			>
-				{rekening.adaRekening ? 'Kelola Rekening' : 'Tambah Rekening'}
-			</button>
-		</div>
+    <!-- Action Button -->
+    <button
+        type="button"
+        class="mt-4 w-full border border-zinc-300 bg-white py-2 text-[10px] font-semibold tracking-[0.15em] uppercase rounded text-zinc-700 hover:bg-zinc-900 hover:border-zinc-900 hover:text-white transition-all duration-200"
+    >
+        Kelola Komplain
+    </button>
+</div>
 
-		<!-- 3. KINERJA PENGIRIMAN -->
+		<!-- 3. Pesanan Masuk -->
 		<div class="lg:col-span-5 border border-zinc-800/20 rounded-sm p-4 sm:p-5">
 			<div class="flex items-center justify-between">
 				<span class="text-[9px] sm:text-[10px] font-bold tracking-[0.18em] text-slate-950/40 uppercase font-mono">
-					KINERJA PENGIRIMAN
+					Pesanan Masuk Hari Ini
 				</span>
-				<span class="flex items-center gap-1 text-[10px] sm:text-[11px] font-mono font-bold">
-					<svg width="11" height="11" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-						<path class="fill-slate-950" d="M12.6722 2.04308C12.5459 1.78707 12.2851 1.625 11.9996 1.625C11.7142 1.625 11.4534 1.78707 11.3271 2.04308L8.67288 7.4211L2.73788 8.28351C2.45536 8.32456 2.22065 8.52244 2.13243 8.79395C2.04421 9.06546 2.11779 9.36351 2.32222 9.56278L6.61682 13.749L5.603 19.66C5.55475 19.9414 5.67041 20.2257 5.90137 20.3936C6.13233 20.5614 6.43853 20.5835 6.69122 20.4506L11.9996 17.6598L17.3081 20.4506C17.5608 20.5835 17.867 20.5614 18.0979 20.3936C18.3289 20.2257 18.4445 19.9414 18.3963 19.66L17.3825 13.749L21.6771 9.56278C21.8815 9.36351 21.9551 9.06546 21.8669 8.79395C21.7786 8.52244 21.5439 8.32456 21.2614 8.28351L15.3264 7.4211L12.6722 2.04308Z"/>
-					</svg>
-					{pengiriman.ratingRataKurir.toFixed(1)}
-					<span class="text-slate-400 font-light">({pengiriman.jumlahRating})</span>
+				<span class="flex items-center gap-1 p-2 text-[10px] sm:text-[11px] font-mono font-bold">
+					<svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-package-icon lucide-package"><path d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z"/><path d="M12 22V12"/><polyline points="3.29 7 12 12 20.71 7"/><path d="m7.5 4.27 9 5.15"/></svg>
+					{totalkanPesanan(listPesanan)} Barang
+					
 				</span>
 			</div>
+			<div class="w-full space-y-2.5 overflow-y-auto scrollbar-none rounded h-50 sm:h-60 pt-2 pr-1">
+				{#each listPesanan as pesanan}
+					<div class="flex items-center justify-between p-2.5 rounded border border-zinc-200/80 bg-white hover:border-zinc-300 hover:shadow-xs transition-all">
+						<!-- Bagian Kiri: Foto & Detail Barang -->
+						<div class="flex items-center space-x-3 min-w-0 flex-1 mr-3">
+							<!-- Foto Barang -->
+							<div class="h-10 w-10 rounded bg-zinc-100 overflow-hidden shrink-0 border border-zinc-200/50">
+								<img src="{pesanan.foto_barang}" alt="{pesanan.nama_barang}" class="h-full w-full object-cover">
+							</div>
+							
+							<!-- Teks (Nama & Kategori) -->
+							<div class="flex flex-col min-w-0 flex-1">
+								<span class="text-zinc-800 text-[11px] font-semibold truncate leading-tight">
+									{pesanan.nama_barang}
+								</span>
+								<span class="text-zinc-400 text-[9px] truncate mt-0.5 font-mono">
+									Kategori -- {pesanan.kategori_barang}
+								</span>
+							</div>
+						</div>
 
-			<div class="mt-4 flex w-full h-2 rounded-full overflow-hidden bg-slate-100">
-				<div class="h-full bg-slate-950" style:width="{persenReguler}%"></div>
-				<div class="h-full bg-slate-300" style:width="{persenEkspedisi}%"></div>
-			</div>
-
-			<div class="mt-3 grid grid-cols-2 gap-3">
-				<div class="flex items-center gap-2">
-					<span class="w-2 h-2 rounded-full bg-slate-950 flex-shrink-0"></span>
-					<div>
-						<p class="text-[9px] text-slate-500 uppercase tracking-wider font-medium">Reguler</p>
-						<p class="text-sm font-bold font-mono">{pengiriman.reguler}</p>
+						<!-- Bagian Kanan: Harga & Kuantitas -->
+						<div class="flex flex-col items-end shrink-0 text-right">
+							<span class="text-zinc-900 text-[11px] font-bold font-mono">
+								Rp {(pesanan.kuantitas * pesanan.harga_barang).toLocaleString('id-ID')}
+							</span>
+							<span class="text-zinc-500 text-[9px] bg-zinc-100 px-1.5 py-0.5 rounded mt-0.5 font-mono">
+								{pesanan.kuantitas}x
+							</span>
+						</div>
 					</div>
-				</div>
-				<div class="flex items-center gap-2">
-					<span class="w-2 h-2 rounded-full bg-slate-300 flex-shrink-0"></span>
-					<div>
-						<p class="text-[9px] text-slate-500 uppercase tracking-wider font-medium">Ekspedisi</p>
-						<p class="text-sm font-bold font-mono">{pengiriman.ekspedisi}</p>
-					</div>
-				</div>
+				{/each}
 			</div>
+			
+			 <button
+				type="button"
+				class="mt-4 w-full border border-zinc-300 bg-white py-2 text-[10px] font-semibold tracking-[0.15em] uppercase rounded text-zinc-700 hover:bg-zinc-900 hover:border-zinc-900 hover:text-white transition-all duration-200"
+			>
+				Kelola Pesanan
+			</button>
 		</div>
 
 		<!-- 5. KOMENTAR BELUM DIBALAS -->
