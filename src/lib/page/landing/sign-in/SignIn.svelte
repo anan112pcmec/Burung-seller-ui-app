@@ -18,7 +18,7 @@
 </script>
 
 <div class="min-h-screen w-full bg-white text-zinc-950 flex flex-col justify-center items-center p-6 border-b border-zinc-200 select-none">
-  <div class="w-full max-w-md border border-zinc-200 bg-white p-8 md:p-10 space-y-8 shadow-sm hover:border-zinc-950 transition-colors duration-200">
+  <div class="w-full max-w-md border-2 rounded-sm border-zinc-200 bg-white p-8 md:p-10 space-y-8 shadow-sm hover:border-zinc-700 transition-colors duration-200">
     
     <!-- Header -->
     <div class="space-y-3 border-b border-zinc-200 pb-6">

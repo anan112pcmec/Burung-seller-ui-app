@@ -54,16 +54,27 @@
     </button>
 
     <!-- Profile Button dengan Divider -->
-    <button 
-      type="button" 
-      class="flex items-center gap-2 text-zinc-700 hover:text-slate-900 transition-colors duration-150 focus:outline-none pl-3 border-l border-zinc-800/80 h-6 truncate w-full justify-start"
-    >
-        <div class=" h-5 w-5 bg-slate-800 rounded-full">
-            <img src="" alt="">
-        </div>
-      <span class="text-[11px] font-semibold tracking-tight truncate">
+    <div class="group relative inline-flex shrink-0 items-center gap-2 text-zinc-700 hover:text-slate-900 transition-colors duration-150 focus:outline-none pl-3 border-l border-zinc-800/80 h-6 cursor-pointer">
+    <!-- Avatar -->
+    <div class="h-5 w-5 bg-slate-800 rounded-full overflow-hidden flex-shrink-0">
+        <img src="" alt="Faiz Hannan Hakim" class="w-full h-full object-cover">
+    </div>
+    
+    <!-- Nama -->
+    <span class="text-[11px] font-semibold tracking-tight truncate">
         Faiz Hannan Hakim
-      </span>
-    </button>
+    </span>
+
+    <!-- Dropdown Menu -->
+    <div class="absolute top-full right-0 pt-2 invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-200 z-[99]">
+        <div class="w-44 sm:w-48 bg-white border border-gray-100 rounded-lg shadow-xl py-1">
+            <a href="/toko" class="block px-4 py-2 text-xs text-gray-700 hover:bg-gray-50 hover:text-slate-900">Toko</a>
+            <a href="/overview" class="flex justify-between items-center px-4 py-2 text-xs text-gray-700 hover:bg-gray-50 hover:text-slate-900">
+                <span>Overview</span>
+                <span class="bg-amber-100 text-amber-800 text-[9px] font-bold px-1.5 py-0.5 rounded-full">Profiling</span>
+            </a>
+        </div>
+    </div>
+</div>
   </div>
 </header>
