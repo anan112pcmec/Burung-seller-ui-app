@@ -158,6 +158,7 @@
         href={mapsLink(gudang.latitude_alamat_gudang, gudang.longitude_alamat_gudang)}
         target="_blank"
         rel="noopener noreferrer"
+        onclick={(e) => e.stopPropagation()}
         class="absolute bottom-2 right-2 bg-white/95 border border-zinc-200 rounded px-1.5 py-0.5 text-[8px] font-mono uppercase tracking-wider text-zinc-700 hover:bg-zinc-100 shadow-2xs transition-colors"
       >
         Buka Peta
@@ -178,9 +179,28 @@
           <h3 class="text-xs font-bold text-zinc-900 leading-tight truncate">
             {gudang.panggilan_alamat_gudang}
           </h3>
-          <span class="text-[9px] text-zinc-400 font-mono shrink-0">
-            {formatTanggal(gudang.created_at)}
-          </span>
+          
+          <div class="flex items-center gap-1.5 shrink-0">
+            <!-- Tombol Edit Gudang -->
+            <div
+              title="Edit Gudang"
+              aria-label="Edit Gudang"
+              onclick={(e) => {
+                e.stopPropagation();
+                goto('/gudang/edit'); // Sesuaikan rute/properti ID gudang Anda
+              }}
+              class="p-1 text-zinc-400 hover:text-zinc-700 hover:bg-zinc-100 rounded transition-colors"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 20h9"/>
+                <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+              </svg>
+            </div>
+
+            <span class="text-[9px] text-zinc-400 font-mono">
+              {formatTanggal(gudang.created_at)}
+            </span>
+          </div>
         </div>
 
         <!-- Alamat Lengkap -->
@@ -210,7 +230,7 @@
             <span class="text-[8px] font-bold tracking-wider text-zinc-400 uppercase font-mono">Barang</span>
             <span class="text-xs font-bold font-mono tracking-tight text-zinc-900">{gudang.jumlah_barang}</span>
           </div>
-          <div role="button" aria-label="0" onclick={(e) => {
+          <div role="button" tabindex="0" aria-label="Live Metric" onclick={(e) => {
             e.preventDefault()
             e.stopPropagation()
             goto("/gudang/live-metric")
@@ -223,7 +243,6 @@
 
   </button>
 {/snippet}
-
 <section id="list-gudang" class="p-8 h-screen w-full border-t border-zinc-200 grid grid-rows-[auto_auto_1fr] gap-4 bg-white text-zinc-800 font-sans">
   
   <!-- Title Header -->

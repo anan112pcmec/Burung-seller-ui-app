@@ -83,94 +83,112 @@
 </script>
 
 {#snippet CardEtalase(etalase: Etalase, index: number)}
-  {@const persenIsi = Math.round((etalase.jumlah_barang / maxJumlahBarang) * 100)}
-  {@const aktif = etalase.jumlah_barang > 0}
-  {@const banner = [
-    'from-teal-700 via-teal-800 to-zinc-900',
-    'from-zinc-700 via-zinc-800 to-slate-900',
-    'from-slate-700 via-slate-800 to-teal-900',
-    'from-zinc-800 via-teal-900 to-zinc-950'
-  ][index % 4]}
+	{@const persenIsi = Math.round((etalase.jumlah_barang / maxJumlahBarang) * 100)}
+	{@const aktif = etalase.jumlah_barang > 0}
+	{@const banner = [
+		'from-teal-700 via-teal-800 to-zinc-900',
+		'from-zinc-700 via-zinc-800 to-slate-900',
+		'from-slate-700 via-slate-800 to-teal-900',
+		'from-zinc-800 via-teal-900 to-zinc-950'
+	][index % 4]}
 
-  <button onclick={() =>{
-    goto("etalase/details")
-  }} class="h-[15.5rem] w-[23rem] border border-zinc-200 hover:border-zinc-400 rounded-lg bg-white overflow-hidden shadow-sm transition-all duration-150 flex flex-col group">
+	<div class="h-[15.5rem] w-[23rem] border border-zinc-200 hover:border-zinc-400 rounded-lg bg-white overflow-hidden shadow-sm transition-all duration-150 flex flex-col group relative">
+		<!-- BANNER — identitas etalase, kayak header profil/channel -->
+		<div class="relative h-[4.75rem] w-full shrink-0 overflow-hidden bg-gradient-to-br {banner}">
+			<!-- pattern watermark tipis, motif ikon toko diulang -->
+			<svg class="absolute inset-0 w-full h-full opacity-[0.08]" preserveAspectRatio="xMidYMid slice">
+				<pattern id="etalase-pattern-{etalase.id_etalase}" width="34" height="34" patternUnits="userSpaceOnUse">
+					<path d="M4 12h26v4a3 3 0 0 1-3 3 3 3 0 0 1-3-3 3 3 0 0 1-3 3 3 3 0 0 1-3-3 3 3 0 0 1-3 3h-2a3 3 0 0 1-3-3 3 3 0 0 1-3 3H8a3 3 0 0 1-3-3v-4Z"
+						fill="none" stroke="white" stroke-width="1"/>
+				</pattern>
+				<rect width="100%" height="100%" fill="url(#etalase-pattern-{etalase.id_etalase})" />
+			</svg>
 
-    <!-- BANNER — identitas etalase, kayak header profil/channel -->
-    <div class="relative h-[4.75rem] w-full shrink-0 overflow-hidden bg-gradient-to-br {banner}">
-      <!-- pattern watermark tipis, motif ikon toko diulang -->
-      <svg class="absolute inset-0 w-full h-full opacity-[0.08]" preserveAspectRatio="xMidYMid slice">
-        <pattern id="etalase-pattern-{etalase.id_etalase}" width="34" height="34" patternUnits="userSpaceOnUse">
-          <path d="M4 12h26v4a3 3 0 0 1-3 3 3 3 0 0 1-3-3 3 3 0 0 1-3 3 3 3 0 0 1-3-3 3 3 0 0 1-3 3h-2a3 3 0 0 1-3-3 3 3 0 0 1-3 3H8a3 3 0 0 1-3-3v-4Z"
-            fill="none" stroke="white" stroke-width="1"/>
-        </pattern>
-        <rect width="100%" height="100%" fill="url(#etalase-pattern-{etalase.id_etalase})" />
-      </svg>
+			<!-- rank -->
+			<span class="absolute top-2 left-2 px-1.5 py-0.5 bg-black/30 backdrop-blur-xs text-white text-[9px] font-mono rounded">
+				#{index + 1}
+			</span>
 
-      <!-- rank -->
-      <span class="absolute top-2 left-2 px-1.5 py-0.5 bg-black/30 backdrop-blur-xs text-white text-[9px] font-mono rounded">
-        #{index + 1}
-      </span>
+			<!-- status & tombol aksi -->
+			<div class="absolute top-2 right-2 flex items-center gap-1.5 z-10">
+				<span class="px-1.5 py-0.5 {aktif ? 'bg-teal-500/20 text-teal-50' : 'bg-white/15 text-white/70'} backdrop-blur-xs text-[9px] font-medium rounded uppercase tracking-wider">
+					{aktif ? 'Aktif' : 'Kosong'}
+				</span>
 
-      <!-- status -->
-      <span class="absolute top-2 right-2 px-1.5 py-0.5 {aktif ? 'bg-teal-500/20 text-teal-50' : 'bg-white/15 text-white/70'} backdrop-blur-xs text-[9px] font-medium rounded uppercase tracking-wider">
-        {aktif ? 'Aktif' : 'Kosong'}
-      </span>
-    </div>
+				<!-- Tombol Edit Etalase -->
+				<button
+					type="button"
+					onclick={(e) => {
+						e.stopPropagation();
+						goto("/etalase/edit")
+					}}
+					title="Edit Etalase"
+					class="p-1 bg-black/40 hover:bg-black/60 text-white rounded backdrop-blur-xs transition-colors"
+				>
+					<svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+						<path d="M12 20h9"/>
+						<path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+					</svg>
+				</button>
+			</div>
+		</div>
 
-    <!-- KONTEN — avatar overlap + info -->
-    <div class="relative px-4 pb-3.5 flex-1 flex flex-col min-h-0">
-      <div class="-mt-6 mb-2 flex items-end justify-between">
-        <div class="w-12 h-12 rounded-full bg-white border-[3px] border-white ring-1 ring-zinc-200 shadow-sm flex items-center justify-center shrink-0">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-zinc-400 stroke-1" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-            <path d="M2 7h20v3a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2 2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2 2 2 0 0 1-2 2H9a2 2 0 0 1-2-2 2 2 0 0 1-2 2H4a2 2 0 0 1-2-2Z"/>
-            <path d="M4 12v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-6"/>
-            <path d="M9 21v-5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v5"/>
-          </svg>
-        </div>
-        <span class="text-[9px] text-zinc-400 font-mono mb-0.5">dibuat {formatTanggal(etalase.created_at)}</span>
-      </div>
+		<!-- KONTEN UTAMA (Klik untuk navigasi ke detail) -->
+		<button 
+			type="button"
+			onclick={() => goto("etalase/details")} 
+			class="relative px-4 pb-3.5 flex-1 flex flex-col min-h-0 text-left w-full cursor-pointer"
+		>
+			<div class="-mt-6 mb-2 flex items-end justify-between">
+				<div class="w-12 h-12 rounded-full bg-white border-[3px] border-white ring-1 ring-zinc-200 shadow-sm flex items-center justify-center shrink-0">
+					<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-zinc-400 stroke-1" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+						<path d="M2 7h20v3a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2 2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2 2 2 0 0 1-2 2H9a2 2 0 0 1-2-2 2 2 0 0 1-2 2H4a2 2 0 0 1-2-2Z"/>
+						<path d="M4 12v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-6"/>
+						<path d="M9 21v-5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v5"/>
+					</svg>
+				</div>
+				<span class="text-[9px] text-zinc-400 font-mono mb-0.5">dibuat {formatTanggal(etalase.created_at)}</span>
+			</div>
 
-      <h3 class="text-xs font-semibold text-zinc-800 leading-tight truncate">
-        {etalase.nama_etalase}
-      </h3>
-      <p class="text-[10px] text-zinc-400 line-clamp-2 mt-0.5 leading-tight">
-        {etalase.deskripsi_etalase}
-      </p>
+			<h3 class="text-xs font-semibold text-zinc-800 leading-tight truncate">
+				{etalase.nama_etalase}
+			</h3>
+			<p class="text-[10px] text-zinc-400 line-clamp-2 mt-0.5 leading-tight">
+				{etalase.deskripsi_etalase}
+			</p>
 
-      <!-- Isi Etalase — progress bar, bukan donut, biar gak kembar sama kartu barang -->
-      <div class="mt-auto pt-2.5 border-t border-zinc-100">
-        <div class="flex items-center justify-between mb-1">
-          <span class="text-[9px] font-semibold uppercase tracking-wider text-zinc-400">Isi Etalase</span>
-          <span class="text-[10px] font-mono font-bold text-zinc-700">{persenIsi}%</span>
-        </div>
-        <div class="w-full h-1.5 bg-zinc-100 rounded-full overflow-hidden">
-          <div
-            class="h-full rounded-full {aktif ? 'bg-teal-600' : 'bg-zinc-300'}"
-            style:width="{persenIsi}%"
-          ></div>
-        </div>
+			<!-- Isi Etalase — progress bar -->
+			<div class="mt-auto pt-2.5 border-t border-zinc-100 w-full">
+				<div class="flex items-center justify-between mb-1">
+					<span class="text-[9px] font-semibold uppercase tracking-wider text-zinc-400">Isi Etalase</span>
+					<span class="text-[10px] font-mono font-bold text-zinc-700">{persenIsi}%</span>
+				</div>
+				<div class="w-full h-1.5 bg-zinc-100 rounded-full overflow-hidden">
+					<div
+						class="h-full rounded-full {aktif ? 'bg-teal-600' : 'bg-zinc-300'}"
+						style:width="{persenIsi}%"
+					></div>
+				</div>
 
-        <div class="mt-2 flex items-center justify-between text-[10px] text-zinc-500 font-mono">
-          <span class="flex items-center gap-1">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 text-zinc-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/>
-              <path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/>
-            </svg>
-            {etalase.jumlah_barang} barang
-          </span>
-          <span class="flex items-center gap-1">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 text-zinc-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M12 8v4l3 3"/><circle cx="12" cy="12" r="9"/>
-            </svg>
-            diperbarui {formatTanggal(etalase.updated_at)}
-          </span>
-        </div>
-      </div>
-    </div>
-  </button>
+				<div class="mt-2 flex items-center justify-between text-[10px] text-zinc-500 font-mono">
+					<span class="flex items-center gap-1">
+						<svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 text-zinc-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+							<path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/>
+							<path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/>
+						</svg>
+						{etalase.jumlah_barang} barang
+					</span>
+					<span class="flex items-center gap-1">
+						<svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 text-zinc-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+							<path d="M12 8v4l3 3"/><circle cx="12" cy="12" r="9"/>
+						</svg>
+						diperbarui {formatTanggal(etalase.updated_at)}
+					</span>
+				</div>
+			</div>
+		</button>
+	</div>
 {/snippet}
-
 <section id="etalase-list" class="p-6 h-screen w-full border-t border-zinc-200 grid grid-rows-[auto_1fr] gap-6 bg-white text-zinc-800 font-sans">
   <div>
     <h1 class="mt-1 text-xl sm:text-2xl font-bold uppercase tracking-tight leading-none">

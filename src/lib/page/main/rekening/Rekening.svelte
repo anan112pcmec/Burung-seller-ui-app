@@ -219,7 +219,11 @@
             {/if}
               <button
                     type="button"
-                    onclick={() =>{goto("/rekening/edit")}}
+                    onclick={(e: Event) =>{
+                        e.preventDefault();
+                        e.stopPropagation();
+                        goto("/rekening/edit")
+                    }}
                     class="px-2.5 py-1 text-[10px] font-semibold text-zinc-700 hover:text-zinc-900 bg-zinc-100 hover:bg-zinc-200 rounded border border-zinc-300 transition-colors cursor-pointer"
                 >
                     Edit

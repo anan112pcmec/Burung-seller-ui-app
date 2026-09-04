@@ -1,5 +1,5 @@
 <script lang="ts">
-  import CardProduk from "../../general/CardProduk.svelte";
+	import CardProduk from "../../general/CardProduk.svelte";
 
 	// ///////////////////////////////////////////////////////////////////////
 	// Types
@@ -14,7 +14,7 @@
 	}
 
 	interface BarangDalamEtalase {
-		idBarangKeEtalase: number; // BarangKeEtalase.ID — dipakai buat "keluarkan dari etalase"
+		idBarangKeEtalase: number;
 		idBarangInduk: number;
 		nama: string;
 		kategori: string;
@@ -31,11 +31,7 @@
 	}
 
 	// ///////////////////////////////////////////////////////////////////////
-	// Mock data — Etalase yang sedang dibuka
-	// ganti dengan hasil fetch detail etalase by id_etalase
-	// TODO: field foto/banner TIDAK ADA di struct Etalase manapun yang tersedia,
-	// kemungkinan besar ini nempel di media_services (pola serupa dokumen
-	// legalitas seller). fotoBannerUrl di sini murni placeholder.
+	// Data Etalase (Read-Only Detail)
 	// ///////////////////////////////////////////////////////////////////////
 
 	const etalase = {
@@ -159,7 +155,7 @@
 	let visibleLabelIdx = $derived(dataTren.map((_, i) => i).filter((i) => dataTren.length <= 8 || i % Math.ceil(dataTren.length / 8) === 0));
 
 	// ///////////////////////////////////////////////////////////////////////
-	// Mock data — barang terlaris di etalase ini (agregat dari transaksi)
+	// Mock data — barang terlaris
 	// ///////////////////////////////////////////////////////////////////////
 
 	const barangTerlaris = [
@@ -170,28 +166,7 @@
 	];
 
 	// ///////////////////////////////////////////////////////////////////////
-	// State — edit info etalase (inline)
-	// ///////////////////////////////////////////////////////////////////////
-
-	let modeEdit = $state(false);
-	let formEdit = $state({ nama: etalase.nama_etalase, deskripsi: etalase.deskripsi_etalase });
-
-	function bukaEdit() {
-		formEdit = { nama: etalase.nama_etalase, deskripsi: etalase.deskripsi_etalase };
-		modeEdit = true;
-	}
-
-	function simpanEdit() {
-		// TODO: panggil EditEtalase — hanya nama & deskripsi yang bisa diubah
-		// dari struct ini; foto banner (kalau memang ada) lewat endpoint media
-		// terpisah.
-		etalase.nama_etalase = formEdit.nama;
-		etalase.deskripsi_etalase = formEdit.deskripsi;
-		modeEdit = false;
-	}
-
-	// ///////////////////////////////////////////////////////////////////////
-	// Mock data — barang di dalam etalase ini
+	// Mock data — barang di dalam etalase
 	// ///////////////////////////////////////////////////////////////////////
 
 	let barangList = $state<BarangDalamEtalase[]>([
@@ -240,32 +215,17 @@
 			totalKomentar: 18
 		}
 	]);
-
-	function keluarkanDariEtalase(id: number) {
-		// TODO: panggil HapusBarangKeEtalase — ini hapus RELASI, bukan hapus
-		// barangnya. BarangKeEtalase hard delete, jadi begitu dihapus langsung
-		// hilang tanpa bisa dipulihkan lewat soft-delete.
-		barangList = barangList.filter((b) => b.idBarangKeEtalase !== id);
-	}
-
-	function formatRupiah(n: number): string {
-		return `Rp${n.toLocaleString('id-ID')}`;
-	}
 </script>
 
 <section id="details-etalase" class="w-full bg-white text-slate-950">
-	<!-- ///////////////////////////////////////////////////////////////// -->
 	<!-- BREADCRUMB RINGKAS -->
-	<!-- ///////////////////////////////////////////////////////////////// -->
 	<div class="px-4 sm:px-6 lg:px-8 pt-4 sm:pt-6">
 		<span class="text-[9px] sm:text-[10px] font-mono text-slate-400 uppercase tracking-wider">
 			Etalase Saya / {etalase.nama_etalase}
 		</span>
 	</div>
 
-	<!-- ///////////////////////////////////////////////////////////////// -->
-	<!-- SECTION 1 — DATA VISUAL PELAPORAN ETALASE INI -->
-	<!-- ///////////////////////////////////////////////////////////////// -->
+	<!-- SECTION 1 — ANALITIK ETALASE -->
 	<div class="px-4 sm:px-6 lg:px-8 pt-3 pb-6 mb-6 border-b border-zinc-800/10">
 		<div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 mb-4">
 			<div>
@@ -377,9 +337,7 @@
 		</div>
 	</div>
 
-	<!-- ///////////////////////////////////////////////////////////////// -->
-	<!-- SECTION 2 — BANNER, NAMA, DESKRIPSI ETALASE -->
-	<!-- ///////////////////////////////////////////////////////////////// -->
+	<!-- SECTION 2 — BANNER & INFORMASI ETALASE (PURE DISPLAY) -->
 	<div class="mb-8">
 		<!-- Banner -->
 		<div class="relative w-full h-40 sm:h-56 lg:h-64 bg-zinc-100 overflow-hidden">
@@ -393,70 +351,22 @@
 					{etalase.nama_etalase}
 				</h2>
 			</div>
-			<button
-				type="button"
-				class="absolute top-3 right-3 sm:right-4 lg:right-6 px-3 py-1.5 bg-white/90 hover:bg-white text-[10px] font-bold uppercase tracking-wider text-slate-800 rounded-sm transition-colors"
-			>
-				Ganti Banner
-			</button>
 		</div>
 
-		<!-- Info & deskripsi -->
+		<!-- Deskripsi & Info -->
 		<div class="px-4 sm:px-6 lg:px-8 pt-4">
-			{#if !modeEdit}
-				<div class="flex items-start justify-between gap-3 flex-wrap">
-					<div class="max-w-2xl">
-						<p class="text-xs sm:text-sm text-slate-700 leading-relaxed">{etalase.deskripsi_etalase}</p>
-						<div class="flex items-center gap-3 mt-3 text-[10px] font-mono text-slate-400">
-							<span>Dibuat {formatTanggal(etalase.created_at)}</span>
-							<span>·</span>
-							<span>Diperbarui {formatTanggal(etalase.updated_at)}</span>
-						</div>
-					</div>
-					<button
-						type="button"
-						onclick={bukaEdit}
-						class="text-[10px] font-bold uppercase tracking-wider text-slate-950 border border-zinc-300 rounded px-3 py-1.5 hover:bg-zinc-50 transition-colors flex-shrink-0"
-					>
-						Edit Etalase
-					</button>
+			<div class="max-w-2xl">
+				<p class="text-xs sm:text-sm text-slate-700 leading-relaxed">{etalase.deskripsi_etalase}</p>
+				<div class="flex items-center gap-3 mt-3 text-[10px] font-mono text-slate-400">
+					<span>Dibuat {formatTanggal(etalase.created_at)}</span>
+					<span>·</span>
+					<span>Diperbarui {formatTanggal(etalase.updated_at)}</span>
 				</div>
-			{:else}
-				<div class="border border-zinc-800/20 rounded-sm p-4 max-w-2xl">
-					<div class="flex flex-col gap-3">
-						<label class="flex flex-col gap-1.5">
-							<span class="text-[10px] font-medium text-slate-600">Nama Etalase</span>
-							<input
-								type="text"
-								bind:value={formEdit.nama}
-								class="border border-zinc-300 rounded-md px-3 py-2 text-xs text-slate-900 focus:outline-none focus:border-slate-950 transition-colors"
-							/>
-						</label>
-						<label class="flex flex-col gap-1.5">
-							<span class="text-[10px] font-medium text-slate-600">Deskripsi</span>
-							<textarea
-								bind:value={formEdit.deskripsi}
-								rows={3}
-								class="border border-zinc-300 rounded-md px-3 py-2 text-xs text-slate-900 focus:outline-none focus:border-slate-950 transition-colors resize-none"
-							></textarea>
-						</label>
-						<div class="flex items-center gap-3">
-							<button type="button" onclick={simpanEdit} class="px-4 py-2 bg-slate-950 text-white text-[10px] font-bold uppercase tracking-wider rounded-sm hover:bg-slate-800 transition-colors">
-								Simpan Perubahan
-							</button>
-							<button type="button" onclick={() => (modeEdit = false)} class="text-[10px] font-medium text-slate-500 underline">
-								Batal
-							</button>
-						</div>
-					</div>
-				</div>
-			{/if}
+			</div>
 		</div>
 	</div>
 
-	<!-- ///////////////////////////////////////////////////////////////// -->
 	<!-- SECTION 3 — LIST BARANG DALAM ETALASE -->
-	<!-- ///////////////////////////////////////////////////////////////// -->
 	<div class="px-4 sm:px-6 lg:px-8 pb-8">
 		<div class="flex items-center justify-between flex-wrap gap-2 pb-3 mb-4 border-b border-zinc-800/10">
 			<div>
@@ -477,7 +387,18 @@
 
 		<div class="flex flex-wrap gap-4">
 			{#each barangList as barang (barang.idBarangKeEtalase)}
-				<CardProduk kategori={barang.kategori} harga={barang.harga} nama={barang.nama} deskripsi={barang.deskripsi} viewed={barang.viewed} likes={barang.likes} total_komen={barang.totalKomentar} action={() => {}} action_el={null} photo={"xakjbx"}/>
+				<CardProduk
+					kategori={barang.kategori}
+					harga={barang.harga}
+					nama={barang.nama}
+					deskripsi={barang.deskripsi}
+					viewed={barang.viewed}
+					likes={barang.likes}
+					total_komen={barang.totalKomentar}
+					action={()=>{}}
+					action_el={null}
+					photo={"xakjbx"}
+				/>
 			{/each}
 
 			{#if barangList.length === 0}
