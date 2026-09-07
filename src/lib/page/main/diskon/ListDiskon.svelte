@@ -115,7 +115,7 @@
 	{@const aktif = diskon.status_diskon_produk === "Aktif"}
 	<button onclick={() => {
 		goto("/diskon/details")
-	}} class="relative w-[23rem] h-[8rem] flex-shrink-0 border border-zinc-200 hover:border-zinc-400 rounded-lg bg-white shadow-sm overflow-hidden flex transition-colors duration-150">
+	}} class="relative w-[23rem] h-[9rem] flex-shrink-0 border border-zinc-200 hover:border-zinc-400 rounded-lg bg-white shadow-sm overflow-hidden flex transition-colors duration-150">
 
 		<!-- SISI KIRI — stub kupon, persentase besar -->
 		<div class="w-24 flex-shrink-0 flex flex-col items-center justify-center gap-1 border-r border-dashed border-zinc-200 bg-zinc-50/60 py-4">
@@ -133,16 +133,36 @@
 		<div class="absolute left-[5.5rem] -bottom-1.5 w-3 h-3 rounded-full bg-zinc-50 border border-zinc-200"></div>
 
 		<!-- SISI KANAN — detail -->
-		<div class="flex-1 p-3 flex flex-col justify-between min-w-0">
-			<div>
-				<div class="flex items-center justify-between gap-1 mb-1">
-					<span class="text-[9px] text-zinc-400 font-mono uppercase tracking-wider">#{String(index + 1).padStart(2, '0')}</span>
+		<div class="flex-1 p-3 flex flex-col justify-start min-w-0 ">
+			<div class="space-y-2">
+				<div class="flex items-start justify-start gap-1 mb-1">
+					
 					<span class="text-[9px] text-zinc-400 font-mono">Dibuat {formatTanggal(diskon.created_at)}</span>
 				</div>
-				<h3 class="text-xs font-semibold text-zinc-800 leading-tight truncate">
-					{diskon.nama_diskon_produk}
-				</h3>
-				<p class="text-[10px] text-zinc-400 line-clamp-2 mt-0.5 leading-tight">
+				<div class="flex justify-between">
+					<h3 class="text-xs font-semibold text-start text-zinc-800 leading-tight truncate">
+						{diskon.nama_diskon_produk} 
+					</h3>
+
+					{#if diskon.status_diskon_produk == "Draft"}
+					<button
+						type="button"
+						onclick={(e) => {
+							e.stopPropagation();
+							goto("/diskon/edit")
+						}}
+						title="Edit Diskon"
+						class="p-1 bg-black/40 hover:bg-black/60 text-white rounded backdrop-blur-xs transition-colors"
+					>
+						<svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+							<path d="M12 20h9"/>
+							<path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+						</svg>
+					</button>
+					{/if}
+				</div>
+				
+				<p class="text-[10px] text-zinc-400 text-start line-clamp-2 mt-0.5 leading-tight">
 					{diskon.deskripsi_diskon_produk}
 				</p>
 			</div>
