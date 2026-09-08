@@ -1,5 +1,7 @@
 <script lang="ts">
-	import ListTransaksi from '../ListTransaksi.svelte';
+  import ListHistoriTransaksi from "../ListHistoriTransaksi.svelte";
+
+	
 
 	// ///////////////////////////////////////////////////////////////////////
 	// Types
@@ -37,6 +39,7 @@
 		// KategoriBarang (relasi — varian spesifik yang dibeli)
 		kategoriBarang: {
 			nama: string;
+			foto?: string;
 			warna: string;
 			harga: number;
 			sku: string;
@@ -219,11 +222,28 @@
 
 			<!-- BARANG YANG DIBELI -->
 			<div class="border border-zinc-800/20 rounded-sm p-4 sm:p-5">
-				<span class="text-[9px] sm:text-[10px] font-bold tracking-[0.15em] text-slate-950/40 uppercase font-mono">
+				<span class="text-[9px] ml-0.8 sm:text-[10px] font-bold tracking-[0.15em] text-slate-950/40 uppercase font-mono">
 					Barang Dibeli
 				</span>
 
-				<div class="mt-3 flex items-start justify-between gap-3">
+				<div class="grid grid-cols-[18%_2%_80%]">
+					<div class="flex items-center justify-center text-center w-full h-full border-2 border-zinc-400 rounded-sm overflow-hidden relative">
+						{#if trx.kategoriBarang.foto}
+							<img 
+								src={trx.kategoriBarang.foto} 
+								alt={trx.kategoriBarang.nama || "Foto Kategori"} 
+								class="w-full h-full object-cover"
+							>
+						{:else}
+							<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-camera text-zinc-600">
+								<path d="M13.997 4a2 2 0 0 1 1.76 1.05l.486.9A2 2 0 0 0 18.003 7H20a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h1.997a2 2 0 0 0 1.759-1.048l.489-.904A2 2 0 0 1 10.004 4z"/>
+								<circle cx="12" cy="13" r="3"/>
+							</svg>
+						{/if}
+					</div>
+					<div>
+						
+					</div>
 					<div class="min-w-0">
 						<span class="text-[9px] text-zinc-400 font-mono uppercase tracking-wider">{trx.barangInduk.jenisBarang}</span>
 						<h3 class="text-sm font-semibold text-zinc-800 leading-tight mt-0.5">{trx.barangInduk.namaBarang}</h3>
@@ -402,7 +422,7 @@
 			TRANSAKSI LAIN DARI PEMBELI INI
 		</span>
 		<div class="mt-3">
-			<ListTransaksi />
+			<ListHistoriTransaksi />
 		</div>
 	</div>
 </section>

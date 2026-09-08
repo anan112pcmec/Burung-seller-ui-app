@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { goto } from '$app/navigation';
+
 	interface TransaksiCardData {
 		kode_order_sistem: string;
 		status: string; // status_transaksi enum
@@ -58,7 +60,11 @@
 
 {#snippet TransaksiCard(i: number)}
 	{@const trx = transaksiList[i]}
-	<div class="relative w-72 flex-shrink-0 border border-zinc-200 hover:border-zinc-400 rounded-lg bg-white shadow-sm overflow-hidden flex flex-col transition-colors duration-150">
+	<div onclick={(e) =>{
+		e.preventDefault();
+		e.stopPropagation();
+		goto("/transaksi/details")
+	}} class="relative w-72 flex-shrink-0 border border-zinc-200 hover:border-zinc-400 rounded-lg bg-white shadow-sm overflow-hidden flex flex-col transition-colors duration-150">
 
 		<!-- HEADER: kode order + status -->
 		<div class="p-3 border-b border-dashed border-zinc-200">
