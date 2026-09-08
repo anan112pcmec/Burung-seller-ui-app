@@ -1,4 +1,7 @@
-<script lang="ts"></script>
+<script lang="ts">
+  import { goto } from "$app/navigation";
+
+</script>
 
 <section id="details-barang-induk" class="w-full bg-white rounded-lg p-6 font-sans">
     <div class="border-b border-zinc-200 pb-3 mb-6 flex items-center justify-between">
@@ -8,9 +11,26 @@
             </h3>
             <span class="text-[10px] font-mono text-zinc-400 mt-1 block">ID: #BI-80291</span>
         </div>
-        <span class="px-2.5 py-1 text-xs font-semibold rounded-full bg-zinc-100 text-zinc-700 font-mono">
-            Jenis: Pakaian
-        </span>
+        <div class="space-x-5">
+            <span class="px-2.5 py-1 text-xs font-semibold rounded-full bg-zinc-100 text-zinc-700 font-mono">
+                Jenis: Pakaian
+            </span>
+
+            <button
+				type="button"
+				onclick={(e) => {
+					e.stopPropagation();
+					goto("/barang/edit/barang-induk")
+				}}
+				title="Edit Barang Induk"
+				class="p-1 bg-black/40 hover:bg-black/60 text-white rounded backdrop-blur-xs transition-colors"
+				>
+				<svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+					<path d="M12 20h9"/>
+					<path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+				</svg>
+			</button>
+        </div>
     </div>
 
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">

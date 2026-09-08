@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { goto } from "$app/navigation";
+
     // State management menggunakan Svelte 5 Runes
     let selectedIndex = $state<number | null>(0); // Default memilih kategori pertama
 
@@ -143,6 +145,20 @@
                                         Original Kategori
                                     </span>
                                 {/if}
+                                  <button
+				type="button"
+				onclick={(e) => {
+					e.stopPropagation();
+					goto("/barang/edit/kategori-barang")
+				}}
+				title="Edit Kategori Barang"
+				class="p-1 bg-black/40 hover:bg-black/60 text-white rounded backdrop-blur-xs transition-colors"
+				>
+				<svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+					<path d="M12 20h9"/>
+					<path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+				</svg>
+			</button>
                             </div>
                             <h3 class="text-xl font-bold text-zinc-900">{selectedData.nama_kategori_barang}</h3>
                         </div>
