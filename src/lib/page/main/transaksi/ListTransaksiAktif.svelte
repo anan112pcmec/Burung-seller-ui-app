@@ -332,7 +332,7 @@
     }
 </script>
 
-<section id="list-transaksi-aktif" class="w-full p-4 sm:px-6 lg:p-8 text-slate-950">
+<section id="list-transaksi-aktif" class="w-full  text-slate-950">
     <!-- HEADER MAIN -->
     <div class="pb-4 mb-4 border-b border-zinc-200">
         <span class="text-[10px] font-bold tracking-[0.18em] text-slate-500 uppercase font-mono">

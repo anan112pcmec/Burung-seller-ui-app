@@ -1,10 +1,12 @@
 <script lang="ts">
   import ListHistoriTransaksi from "$lib/page/main/transaksi/ListHistoriTransaksi.svelte";
   import ListTransaksiAktif from "$lib/page/main/transaksi/ListTransaksiAktif.svelte";
-  import OverviewTransaksi from "$lib/page/main/transaksi/OverviewTransaksi.svelte";
+  import InformasiVisualTransaksi from "$lib/page/main/transaksi/InformasiVisualTransaksi.svelte";
 
 </script>
 
-<OverviewTransaksi/>
+<main class="p-5 space-y-5">
+<InformasiVisualTransaksi/>
 <ListTransaksiAktif/>
 <ListHistoriTransaksi/>
+</main>

@@ -1,8 +1,10 @@
 <script lang="ts">
   import ListGudang from "$lib/page/main/gudang/ListGudang.svelte";
-  import OverviewGudang from "$lib/page/main/gudang/OverviewGudang.svelte";
+  import InformasiVisualGudang from "$lib/page/main/gudang/InformasiVisualGudang.svelte";
 
 </script>
 
-<OverviewGudang/>
+<main class="p-5 space-y-5">
+<InformasiVisualGudang/>
 <ListGudang/>
+</main>

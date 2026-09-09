@@ -115,7 +115,7 @@
 	);
 </script>
 
-<section id="overview-etalase" class="w-full bg-white p-4 sm:p-6 lg:p-8 text-slate-950">
+<section id="overview-etalase" class="w-full bg-white  text-slate-950">
 	<!-- ///////////////////////////////////////////////////////////////// -->
 	<!-- HEADER -->
 	<!-- ///////////////////////////////////////////////////////////////// -->

@@ -232,7 +232,7 @@
     </div>
 {/snippet}
 
-<section id="rekening" class="w-full bg-white p-4 sm:p-6 lg:p-8 text-slate-950">
+<section id="rekening" class="w-full bg-white  text-slate-950">
 	<div class="flex items-center justify-between flex-wrap gap-3 pb-5 mb-6 border-b border-zinc-800/10">
 		<div>
 			<span class="text-[9px] sm:text-[10px] font-bold tracking-[0.18em] text-slate-950/40 uppercase font-mono">

@@ -1,8 +1,10 @@
 <script lang="ts">
   import EtalaseList from "$lib/page/main/etalase/EtalaseList.svelte";
-  import OverviewEtalase from "$lib/page/main/etalase/OverviewEtalase.svelte";
+  import InformasiVisualEtalase from "$lib/page/main/etalase/InformasiVisualEtalase.svelte";
 
 </script>
 
-<OverviewEtalase/>
-<EtalaseList/>
+<main class="p-5">
+  <InformasiVisualEtalase/>
+  <EtalaseList/>
+</main>

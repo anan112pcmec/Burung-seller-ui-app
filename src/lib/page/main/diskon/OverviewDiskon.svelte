@@ -257,7 +257,7 @@
 	let maxDiterbitkan = $derived(Math.max(...data.map((d) => d.diterbitkan), 1));
 </script>
 
-<section id="overview-diskon" class="w-full bg-white p-4 sm:p-6 lg:p-8 text-slate-950">
+<section id="overview-diskon" class="w-full bg-white  text-slate-950">
 	<!-- ///////////////////////////////////////////////////////////////// -->
 	<!-- HEADER + FILTER PERIODE -->
 	<!-- ///////////////////////////////////////////////////////////////// -->

@@ -64,9 +64,7 @@
 
 	let orderPipeline: StageOrder[] = $state([
 		{ label: 'Menunggu Approve', jumlah: 8 },
-		{ label: 'Diproses', jumlah: 14 },
-		{ label: 'Menunggu Kurir', jumlah: 5 },
-		{ label: 'Selesai (7 Hari)', jumlah: 62 }
+		
 	]);
 
 
@@ -79,19 +77,17 @@
 
 	let barangKritis: BarangKritis[] = $state([
 		{ id: 1, nama: 'Kemeja Linen Oversize', stok: 2, status: 'Stok Menipis' },
-		{ id: 2, nama: 'Rok Plisket Katun', stok: 0, status: 'Nonaktif' },
-		{ id: 3, nama: 'Blouse Rajut Kancing', stok: 3, status: 'Stok Menipis' }
+		
 	]);
 
 	let komentarBelumDibalas: KomentarBelumDibalas[] = $state([
 		{ id: 1, namaBarang: 'Kemeja Linen Oversize', komentar: 'Bahannya adem gak kak?', waktu: '12m lalu' },
-		{ id: 2, namaBarang: 'Rok Plisket Katun', komentar: 'Ready size L kak?', waktu: '48m lalu' },
-		{ id: 3, namaBarang: 'Blouse Rajut Kancing', komentar: 'Real pic dong kak', waktu: '2j lalu' }
+		
 	]);
 
 	let diskonAktif: DiskonAktif[] = $state([
 		{ id: 1, nama: 'Migrasi Kilat', persen: 20, jumlahBarang: 12, sisaPersenWaktu: 72, sisaWaktuLabel: '2h 6j lagi' },
-		{ id: 2, nama: 'Diskon Kategori Atasan', persen: 15, jumlahBarang: 24, sisaPersenWaktu: 24, sisaWaktuLabel: '9j lagi' }
+		
 	]);
 
 	let kelengkapanProfil = $state(72); // persen
@@ -117,25 +113,7 @@
 			nama: "Faiz",
 			pesan: "bagaimana ini pengiriman nya bermasalah",
 			created_at: "20-12-2026"
-		},
-		{
-			foto_profil: "free_image",
-			nama: "iconk",
-			pesan: "ini gimana ya kok barang saya tidak lengkap",
-			created_at: "20-11-2026"
-		},
-		{
-			foto_profil: "free_image",
-			nama: "ical",
-			pesan: "gabaik nih seller pelayanan nya",
-			created_at: "20-01-2026"
-		},
-		{
-			foto_profil: "free_image",
-			nama: "bambang",
-			pesan: "gak sesuai produk yang dikirim dengan produk yang diberikan",
-			created_at: "20-02-2026"
-		},
+		}
 	]
 
 	let listPesanan: Pesanan[] = [
@@ -144,34 +122,6 @@
         nama_barang: "Sepatu Nike Air Jordan",
         kategori_barang: "Nike Jordan A1",
         harga_barang: 2999999,
-        kuantitas: 2
-    },
-    {
-        foto_barang: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=100&auto=format&fit=crop&q=60",
-        nama_barang: "Smartwatch Series 8",
-        kategori_barang: "Apple Gadget",
-        harga_barang: 5499000,
-        kuantitas: 1
-    },
-    {
-        foto_barang: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=100&auto=format&fit=crop&q=60",
-        nama_barang: "Headphone Wireless ANC",
-        kategori_barang: "Audio & Music",
-        harga_barang: 1250000,
-        kuantitas: 3
-    },
-    {
-        foto_barang: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=100&auto=format&fit=crop&q=60",
-        nama_barang: "Mechanical Keyboard RGB",
-        kategori_barang: "Computer Gear",
-        harga_barang: 850000,
-        kuantitas: 1
-    },
-    {
-        foto_barang: "https://images.unsplash.com/photo-1491553895911-0055eca6402d?w=100&auto=format&fit=crop&q=60",
-        nama_barang: "Sneakers Adidas Ultraboost",
-        kategori_barang: "Adidas Running",
-        harga_barang: 2100000,
         kuantitas: 2
     }
 ];
@@ -186,30 +136,7 @@ function totalkanPesanan(pesanan: Pesanan[]): number {
 }
 </script>
 
-<section id="dashboard-seller" class="w-full min-h-screen bg-white p-4 sm:p-6 lg:p-8 text-slate-950 scrollbar-none">
-	<!-- ///////////////////////////////////////////////////////////////// -->
-	<!-- HEADER -->
-	<!-- ///////////////////////////////////////////////////////////////// -->
-	<header class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 sm:gap-0 pb-6 mb-6 border-b border-zinc-800/10">
-		<div>
-			<span class="text-[9px] sm:text-[10px] font-bold tracking-[0.18em] text-slate-950/40 uppercase font-mono">
-				DASHBOARD SELLER
-			</span>
-			<h1 class="mt-1 text-xl sm:text-2xl lg:text-3xl font-bold uppercase tracking-tight leading-none">
-				Halo, {namaSeller}
-			</h1>
-			<p class="mt-1 text-[11px] sm:text-xs text-slate-500 font-light">
-				{namaToko}
-			</p>
-		</div>
-
-		<div class="flex items-center gap-2">
-			<span class="inline-flex items-center gap-1.5 px-2.5 py-1.5 border border-zinc-800/20 rounded-xs text-[9px] sm:text-[10px] font-medium uppercase tracking-wider">
-				<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-				Toko Aktif
-			</span>
-		</div>
-	</header>
+<section id="dashboard-seller" class="w-full min-h-screen bg-white text-slate-950 scrollbar-none">
 
 	<!-- ///////////////////////////////////////////////////////////////// -->
 	<!-- GRID -->

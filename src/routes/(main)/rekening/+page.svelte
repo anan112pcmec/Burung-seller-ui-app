@@ -1,8 +1,10 @@
 <script lang="ts">
-  import OverviewRekening from "$lib/page/main/rekening/OverviewRekening.svelte";
+  import InformasiVisualRekening from "$lib/page/main/rekening/InformasiVisualRekening.svelte";
   import Rekening from "$lib/page/main/rekening/Rekening.svelte";
 
 </script>
 
-<OverviewRekening/>
+<main class="p-5 space-y-5">
+<InformasiVisualRekening/>
 <Rekening/>
+</main>

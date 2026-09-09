@@ -194,7 +194,7 @@
 	</button>
 {/snippet}
 
-<section id="list-diskon" class="p-6 w-full grid grid-rows-[auto_1fr] gap-6 bg-white text-zinc-800 font-sans">
+<section id="list-diskon" class=" w-full grid grid-rows-[auto_1fr] gap-6 bg-white text-zinc-800 font-sans">
 	<div>
 		<h1 class="mt-1 text-xl sm:text-2xl font-bold uppercase tracking-tight leading-none">
 			Diskon Toko Kamu

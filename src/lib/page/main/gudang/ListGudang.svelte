@@ -243,7 +243,7 @@
 
   </button>
 {/snippet}
-<section id="list-gudang" class="p-8 h-screen w-full border-t border-zinc-200 grid grid-rows-[auto_auto_1fr] gap-4 bg-white text-zinc-800 font-sans">
+<section id="list-gudang" class="pt-4 h-screen w-full border-t border-zinc-200 grid grid-rows-[auto_auto_1fr] gap-4 bg-white text-zinc-800 font-sans">
   
   <!-- Title Header -->
   <div class="flex items-center justify-between">
@@ -308,7 +308,7 @@
   </div>
 
   <!-- Gudang Grid Container -->
-  <div class="flex flex-wrap gap-4 items-start w-full overflow-y-auto scrollbar-none pr-1 pb-4">
+  <div class="flex flex-wrap gap-4 items-start w-full overflow-y-auto scrollbar-none">
     {#if gudangTertampil.length === 0}
       <p class="text-xs text-zinc-400 font-mono py-8 w-full text-center">Tidak ada gudang yang cocok dengan pencarian.</p>
     {:else}

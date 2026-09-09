@@ -6,5 +6,7 @@
 
 </script>
 
-<InformasiVisualBarang/>
-<BarangList/>
+<main class="p-5">
+  <InformasiVisualBarang/>
+  <BarangList/>
+</main>
